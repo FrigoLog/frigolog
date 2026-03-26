@@ -32,3 +32,18 @@
 .cinza {
     color: #475569;
 }
+
+* {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+}
+
+.titulo {
+    font-size: 36px;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 700;
+}
