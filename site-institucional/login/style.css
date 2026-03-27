@@ -22,7 +22,8 @@ body{
     border: 2px solid rgba(255, 255, 255, .2);
     color: #fff;
     padding: 30px 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+    border-radius: 15px;
     
 }
 
@@ -37,8 +38,25 @@ body{
     font-weight: bold;
 }
 
-.container .white { color: black; }
+.container .white { color: #5BAFFE; }
 .container .red  { color: red; }
+
+.logo .input-controle{
+    position: center;
+    width: 64%;
+    height: 20px;
+    margin: 5px 0;
+    background-color: #f7baba;
+    border: 2px solid #f7baba;
+    border-radius: 40px;
+    font-size: 10px;
+
+}
+
+.logo .input-controle::placeholder{
+    color: red;
+    position: center;
+}
 
 .input-box{
     position: relative;
