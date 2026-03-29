@@ -22,7 +22,7 @@ body{
     border: 2px solid rgba(255, 255, 255, .2);
     color: #fff;
     padding: 30px 40px;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+    box-shadow: 0 0 10px black;
     border-radius: 15px;
     
 }
@@ -33,13 +33,25 @@ body{
     margin-bottom: 20px;
 }
 
+.logo-row {
+    display: flex;
+    align-items: center;  /* alinha verticalmente no centro */
+    justify-content: center;
+}
+
+.logo .icon{
+    height: 50px; 
+    width: auto;
+}
+
+
 .logo span {
     font-size: 36px;
     font-weight: bold;
 }
 
 .container .white { color: #5BAFFE; }
-.container .red  { color: red; }
+.container .red  { color: #ff0000; }
 
 .logo .input-controle{
     position: center;
@@ -73,29 +85,113 @@ body{
     border-radius: 40px;
     outline: none;
     font-size: 16px;
-    color: #fff;
-    padding: 20px 45px 20px 20px;
+    color: black;
+
 }
 
 .input-box input::placeholder{
     color: #c5c5c5;
 }
 
-.input-box i{
+.icone-esquerda {
     position: absolute;
-    right: 20px;
-    top: 25%;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 20px;
     color: #c5c5c5;
 }
 
+.icone-direita {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #c5c5c5;
+}
+
+/* padding diferente para cada input */
+.input-box input[type="email"] {
+    padding: 20px 20px 20px 45px; /* espaço à esquerda para o envelope */
+}
+
+
+
+.input-box input[type="password"], .input-box input[type="text"]  {
+    padding: 20px 45px 20px 45px; /* espaço à direita para o olho */
+}
+
+/* Remove o ícone de olho nativo do navegador */
+input::-ms-reveal {
+    display: none;
+}
+
+
 .remember-forgot{
     display: flex;
     justify-content: space-between;
-    color: #c5c5c5
+    color: #c5c5c5;
+    margin: -15px 0 15px;
 }
 
 .remember-forgot label input{
     accent-color: #c5c5c5;
     margin-right: 5px;
+}
+
+.remember-forgot a {
+    text-decoration: none;
+    color: #c5c5c5;
+
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+    
+}
+
+.login{
+    width: 100%;
+    height: 50px;
+    background-color: #5BAFFE;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color:#fff;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0,0,0, .1);
+    margin-top: 20px;
+}
+
+.login:hover{
+    background-color: #80bef8;
+    border: 2px solid rgba(255, 255, 255, .2);
+    transition: 0.5s;
+}
+
+.register-link{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+
+}
+
+.register-link p{
+    text-decoration: none;
+    color: #c5c5c5;
+    
+}
+
+
+.register-link a{
+    text-decoration: none;
+    color: #c5c5c5;
+    font-weight: 600;
+
+}
+
+.register-link a:hover{
+    text-decoration: underline;
 }

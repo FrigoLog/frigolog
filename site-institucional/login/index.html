@@ -18,19 +18,23 @@
         <form>
 
             <div class="logo">
-                
-                <span class="white">FRIGO</span><span class="red">LOG</span>
-                <input class="input-controle" placeholder="CONTROLE TÉRMICO DE PONTA A PONTA"></input>
+                <div class="logo-row">
+                    <img class="icon" src="iconlogo.png" alt="Logo">
+                    <span class="white">FRIGO</span><span class="red">LOG</span>
+                </div>
+
+                <input class="input-controle" placeholder="  ◉ CONTROLE TÉRMICO DE PONTA A PONTA"></input>
             </div>
 
             <div class="input-box">
-                <input placeholder="Usuário" type="email">
-                <i class="bx bxs-user"></i>
+                <i class="bx bx-envelope icone-esquerda"></i>
+                <input placeholder="exemplo@frigolog.com" type="email">
             </div>
 
             <div class="input-box">
-                <input placeholder="Senha" type="password">
-                <i class="bx bxs-lock-alt"></i>
+                <i class="bx bx-lock-alt icone-esquerda"></i>
+                <input placeholder="Senha" type="password" id="senha">
+                <i class="bx bx-hide icone-direita" id="olho" onclick="toggleSenha()" style="cursor:pointer"></i>
             </div>
 
             <div class="remember-forgot">
@@ -38,11 +42,11 @@
                     <input type="checkbox">
                     Lembrar senha
                 </label>
-                <a href="#">Esqueci senha</a> <!-- colocar o link depois -->
+                <a href="#">Esqueci a senha</a> <!-- colocar o link depois -->
 
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit" class="login">Login</button>
 
             <div class="register-link">
                 <p>Não tem uma conta? <a href="#">Cadastre-se</a></p> <!-- colocar o link depois -->
@@ -53,6 +57,23 @@
         </form>
 
     </main>
+
+
+    <script>
+        function toggleSenha() {
+            const input = document.getElementById('senha');
+            const olho = document.getElementById('olho');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                olho.className = 'bx bx-show icone-direita';
+            } else {
+                input.type = 'password';
+                olho.className = 'bx bx-hide icone-direita';
+            }
+        }
+
+    </script>
 
 </body>
 
