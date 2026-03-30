@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../login/style.css">
+    <title>Cadastro</title>
+</head>
+
+
+<body>
+
+    <main class="container">
+
+        <form>
+
+            <div class="logo">
+                <div class="logo-row">
+                    <img class="icon" src="../login/iconlogo.png" alt="Logo">
+                    <span class="white">FRIGO</span><span class="red">LOG</span>
+                </div>
+
+              <input class="input-controle" placeholder="  ◉ CONTROLE TÉRMICO DE PONTA A PONTA"></input>
+            </div>
+
+            <div>
+                <span class="titulo_caixa_texto">E-mail profissional:</span>
+
+                <div class="input-box-cadastro">
+                     <i class="bx bx-envelope icone-esquerda"></i>
+                    <input placeholder="exemplo@thermochain.com.br" type="email">
+                    <i class="bx bxs-user"></i>
+                </div>
+            </div>
+
+            <div>
+                <span class="titulo_caixa_texto">Nome:</span>
+                <div class="input-box-cadastro">
+                    <input placeholder="Insira seu nome completo" type="text">
+                    <i class="bx bxs-user"></i>
+                </div>
+            </div>
+
+            <div>
+                <span class="titulo_caixa_texto">Senha:</span>
+                <div class="input-box-cadastro">
+                    <i class="bx bx-lock-alt icone-esquerda"></i>
+                    <input placeholder="Insira no mínimo 8 caracteres..." type="password">
+                     <i class="bx bx-hide icone-direita" id="olho" onclick="toggleSenha()" style="cursor:pointer"></i>
+                </div>
+            </div>
+
+            <div class="posicao_botao_cadastro">
+                <button class="login" type="submit">Realizar cadastro</button>
+
+                <div class="register-link">
+                    <p class="titulo_caixa_texto">Já tem uma conta? <a href="#">Fazer login</a></p>
+                    <!-- colocar o link depois -->
+
+                </div>
+            </div>
+
+        </form>
+
+    </main>
+
+
+</body>
+
+</html>

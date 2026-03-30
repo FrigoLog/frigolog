@@ -195,3 +195,51 @@ input::-ms-reveal {
 .register-link a:hover{
     text-decoration: underline;
 }
+
+/* Style Página de cadastro: */
+
+/* titulo de cada input */
+.titulo_caixa_texto {
+    color: black;
+}
+
+/* para alinhar o botao final e o de login */
+.posicao_botao_cadastro{
+    display: flex;
+     align-items: center;
+      flex-direction: column;
+}
+
+/* criei o input de cadastro para poder ajustar a distancia da margem sem mudar a estrutura da pagina de login */
+.input-box-cadastro{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 15px 0;
+}
+
+.input-box-cadastro input{
+    width: 100%;
+    height: 100%;
+    background-color: #F7F7F7;
+    border: 2px solid #DEDEDE;
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    color: black;
+
+}
+
+.input-box-cadastro input::placeholder{
+    color: #c5c5c5;
+}
+
+.input-box-cadastro input[type="email"] {
+    padding: 20px 20px 20px 45px; /* espaço à esquerda para o envelope */
+}
+
+.input-box-cadastro input[type="password"],
+
+.input-box-cadastro input[type="text"]  {
+    padding: 20px 45px 20px 45px; /* espaço à direita para o olho */
+}
