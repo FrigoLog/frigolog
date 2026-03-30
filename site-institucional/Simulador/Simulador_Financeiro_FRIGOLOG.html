@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_sim_frigolog.css">
+    <title>Simulador Financeiro - FRIGOLOG</title>
+</head>
+
+<body>
+
+<h1>Simulador Financeiro - FRIGOLOG</h1>
+<div class="paiCard">
+
+<div class="card">
+
+<h3>Período</h3>
+<select id="ipt_periodo">
+    <option value="1">Mensal</option>
+    <option value="12">Anual</option>
+</select>
+
+<h2>Transporte</h2>
+
+<span>Cargas por mês:</span> <br>
+<input type="number" id="ipt_cargas"><br>
+
+<span>Valor por carga (R$):</span> <br>
+<input type="number" id="ipt_valor"><br>
+
+<span>Porcentagem de cargas com problema (saiu do padrão ideal de até 4°C):</span> <br>
+<input class="porcentagens" type="number" id="ipt_problema" placeholder="Ex.:(10)"><b>%</b><br>
+
+<span>Perdas por carga com problema:</span> <br>
+<input class="porcentagens" type="number" id="ipt_perda"><b>%</b><br>
+<span class="descricao">Exemplo: Se cada carga vale R$10.000,00 e a perda da que está com problema for de 10%</span> <br>
+<span class="descricao">o custo será de R$1.000,00 por carga com problema</span>
+
+<h2>Armazenamento</h2>
+
+<span>Estoque médio (R$):</span> <br>
+<input type="number" id="ipt_estoque"><br>
+
+<span>% perdas adicionais: </span> <br>
+<input class="porcentagens" type="number" id="ipt_umidade" placeholder="Ex: 1.5"><br>
+
+<br>
+
+<button onclick="calcular()">Calcular Impacto Total</button>
+</div>
+<div class="card2">
+<div id="resultado"></div>
+</div>
+
+</div>
+</body>
+
+<script>
+
+    resultado.innerHTML=`<h3>Pressione o botão "Calcular Impacto Total" para ver resultados...</h3>`
+function calcular() {
+
+    let periodo = Number(ipt_periodo.value);
+
+    // TRANSPORTE
+    let cargasMes = Number(ipt_cargas.value);
+    let valorCarga = Number(ipt_valor.value);
+    let percProblema = Number(ipt_problema.value);
+    let percPerda = Number(ipt_perda.value);
+
+    let totalCargas = cargasMes * periodo;
+    let faturamentoTransporte = totalCargas * valorCarga;
+
+    let cargasProblema = totalCargas * (percProblema / 100);
+    let perdaPorCarga = valorCarga * (percPerda / 100);
+    let prejuizoTransporte = cargasProblema * perdaPorCarga;
+
+    // ESTOQUE
+    let estoque = Number(ipt_estoque.value);
+    let percUmidade = Number(ipt_umidade.value);
+
+    let prejuizoUmidade = estoque * (percUmidade / 100) * periodo;
+
+    // RISCO TOTAL (falha grave)
+    let valorEmRisco = estoque;
+
+    // PREJUÍZO TOTAL SEM SISTEMA
+    let prejuizoTotal = prejuizoTransporte + prejuizoUmidade;
+
+    // FRIGOLOG reduz perdas
+    let reducao = prejuizoTotal * 0.75;
+    let prejuizoComSistema = prejuizoTotal - reducao;
+
+    let economia = prejuizoTotal - prejuizoComSistema;
+
+    // ENERGIA
+    let custoEnergia = estoque * 0.02 * periodo;
+    let economiaEnergia = custoEnergia * 0.15;
+
+    // OPERAÇÃO MANUAL
+    let custoFuncionario = 2500 * periodo;
+
+    // ROI
+    let custoSistema = economia * 0.05;
+    let payback = custoSistema / (economia / periodo);
+
+    resultado.innerHTML = `
+    <h2>Resultado Completo</h2>
+
+    <h3>Transporte</h3>
+    Prejuízo: <b style="color:red">R$ ${prejuizoTransporte.toFixed(2)}</b><br><br>
+
+    <h3>Armazenamento</h3>
+    Perdas adicionais: <b style="color:red">R$ ${prejuizoUmidade.toFixed(2)}</b><br><br>
+
+    <h3>Prejuízo Total</h3>
+    <b style="color:red">R$ ${prejuizoTotal.toFixed(2)}</b><br><br>
+
+    <hr>
+
+    <h3>Com FRIGOLOG</h3>
+
+    Prejuízo reduzido:
+    <b style="color:green">R$ ${prejuizoComSistema.toFixed(2)}</b><br><br>
+
+    Economia total:
+    <b style="color:blue">R$ ${economia.toFixed(2)}</b><br><br>
+
+    <hr>
+
+    <h3>Risco Operacional</h3>
+
+    Valor em risco (estoque):
+    <b style="color:red">R$ ${valorEmRisco.toFixed(2)}</b><br><br>
+
+    <hr>
+
+    <h3>Energia</h3>
+
+    Economia energética:
+    <b style="color:green">R$ ${economiaEnergia.toFixed(2)}</b><br><br>
+
+    <hr>
+
+    <h3>Operação</h3>
+
+    Economia com automação:
+    <b style="color:green">R$ ${custoFuncionario.toFixed(2)}</b><br><br>
+
+    <hr>
+
+    <h3>ROI</h3>
+
+    Payback:
+    <b>${payback.toFixed(1)} meses</b><br><br>
+
+    <hr>
+
+    <h3>Conclusão</h3>
+
+    Sua operação pode perder até 
+    <b style="color:red">R$ ${prejuizoTotal.toFixed(2)}</b> no período.<br><br>
+
+    A FRIGOLOG transforma esse prejuízo em economia de 
+    <b style="color:blue">R$ ${economia.toFixed(2)}</b> e protege seu estoque.
+    `;
+}
+</script>
+
+</html>

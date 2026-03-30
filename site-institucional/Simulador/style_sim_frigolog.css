@@ -1,0 +1,101 @@
+body {
+    background: #5BAFFE;
+    text-align: center;
+    font-family: Arial;
+
+
+}
+
+.paiCard {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 50px;
+}
+
+.card {
+    padding: 30px;
+    background-color: white;
+    border-radius: 50px;
+    height: 1100px;
+    margin-left: 30px;
+}
+
+h2 {
+    margin: 60px;
+}
+
+
+select {
+    padding: 12px;
+    margin: 5px;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 50px;
+    font-size: large;
+}
+
+select:hover {
+    padding: 12px;
+    margin: 5px;
+    background-color: #5BAFFE;
+    color: white;
+    border: 2px solid rgb(68, 0, 255);
+    border-radius: 50px;
+}
+
+span {
+    font-size: x-large;
+}
+
+.descricao {
+    font-size: small;
+}
+
+
+input {
+    padding: 8px;
+    margin: 5px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #365EFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 100px;
+    font-size: large;
+}
+
+button:hover {
+    background-color: #36a5ff;
+    color: white;
+    padding: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 100px;
+    font-size: larger;
+}
+
+.porcentagens {
+    width: 80px;
+    text-align: center;
+    font-size: 100%;
+    background-color: white;
+    border-width: 0px;
+    border-bottom: 1px solid red;
+    border-radius: 5px;
+}
+
+.card2 {
+    padding: 30px;
+    margin-right: 30px;
+    background-color: white;
+    border-radius: 50px;
+    align-self: self-end;
+    height: 1100px;
+}
