@@ -33,6 +33,10 @@
     color: #475569;
 }
 
+.centralizado {
+    text-align: center;
+}
+
 * {
     font-family: 'Space Grotesk', Arial, sans-serif;
 }
@@ -43,7 +47,64 @@
     color: #0F172A;
 }
 
+.area_texto {
+    padding: 0 60px;
+}
+
 p {
     font-size: 16px;
     font-weight: 700;
+}
+
+.diagrama {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin: 50px;
+}
+
+/* Linha horizontal */
+.diagrama::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: red;
+  z-index: 0;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: center;
+    text-align: center;
+    width: 30%;
+    position: relative;
+    z-index: 1;
+}
+
+.step_descricao {
+    width: 80%;
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border: 5px solid red;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 20px;
+}
+
+.circle img {
+    width: 60%;
+    height: 50%;
 }
