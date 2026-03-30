@@ -1,170 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_sim_frigolog.css">
+    <link rel="stylesheet" href="../login/style.css">
     <title>Simulador Financeiro - FRIGOLOG</title>
 </head>
 
 <body>
 
-<h1>Simulador Financeiro - FRIGOLOG</h1>
-<div class="paiCard">
 
-<div class="card">
+    <main class="container-simulador">
 
-<h3>Período</h3>
-<select id="ipt_periodo">
-    <option value="1">Mensal</option>
-    <option value="12">Anual</option>
-</select>
+        <form>
 
-<h2>Transporte</h2>
+            <div class="logo">
+                <div class="logo-row">
+                    <img class="icon" src="../login/iconlogo.png" alt="Logo">
+                    <span class="white">FRIGO</span><span class="red">LOG</span>
+                </div>
 
-<span>Cargas por mês:</span> <br>
-<input type="number" id="ipt_cargas"><br>
+                <p class="simulador">Simulador Financeiro - Cadeia Fria</p>
 
-<span>Valor por carga (R$):</span> <br>
-<input type="number" id="ipt_valor"><br>
+            </div>
 
-<span>Porcentagem de cargas com problema (saiu do padrão ideal de até 4°C):</span> <br>
-<input class="porcentagens" type="number" id="ipt_problema" placeholder="Ex.:(10)"><b>%</b><br>
+            <div class="button-periodo">
 
-<span>Perdas por carga com problema:</span> <br>
-<input class="porcentagens" type="number" id="ipt_perda"><b>%</b><br>
-<span class="descricao">Exemplo: Se cada carga vale R$10.000,00 e a perda da que está com problema for de 10%</span> <br>
-<span class="descricao">o custo será de R$1.000,00 por carga com problema</span>
+                <button type="button" class="mensal ativo" onclick="setPeriodo(1, this)">Mensal</button>
+                <button type="button" class="anual" onclick="setPeriodo(12, this)">Anual</button>
+            </div>
 
-<h2>Armazenamento</h2>
+            <div class="forms">
 
-<span>Estoque médio (R$):</span> <br>
-<input type="number" id="ipt_estoque"><br>
+                <div class="label">🚛 Transporte</div>
 
-<span>% perdas adicionais: </span> <br>
-<input class="porcentagens" type="number" id="ipt_umidade" placeholder="Ex: 1.5"><br>
+                <div>
+                    <p class="titulo_caixa_texto">Cargas por mês</p>
+                    <div class="input-box">
+                        <input type="number" id="ipt_cargas" placeholder="Ex: 20" min="0" />
+                        <span class="icone-direita">un</span>
+                    </div>
+                </div>
 
-<br>
+                <div>
+                    <p class="titulo_caixa_texto">Valor por carga (R$)</p>
+                    <div class="input-box has-prefix">
+                        <span class="icone-esquerda" style="font-size:12px;font-weight:700;">R$</span>
+                        <input type="number" id="ipt_valor" placeholder="Ex: 10000" min="0" />
+                    </div>
+                </div>
 
-<button onclick="calcular()">Calcular Impacto Total</button>
-</div>
-<div class="card2">
-<div id="resultado"></div>
-</div>
+                <div>
+                    <p class="titulo_caixa_texto">Cargas com problema (saíram dos 4°C)</p>
+                    <div class="input-box">
+                        <input type="number" id="ipt_problema" placeholder="Ex: 10" min="0" max="100" />
+                        <span class="icone-direita">%</span>
+                    </div>
+                </div>
 
-</div>
+                <div>
+                    <p class="titulo_caixa_texto">Perda por carga com problema</p>
+                    <div class="input-box">
+                        <input type="number" id="ipt_perda" placeholder="Ex: 15" min="0" max="100" />
+                        <span class="icone-direita">%</span>
+                    </div>
+                    <p class="dica">Carga de R$10.000 com 10% de perda = R$1.000 de prejuízo</p>
+                </div>
+
+                <div class="label">🏭 Armazenamento</div>
+
+                <div>
+                    <p class="titulo_caixa_texto">Estoque médio (R$)</p>
+                    <div class="input-box has-prefix">
+                        <span class="icone-esquerda" style="font-size:12px;font-weight:700;">R$</span>
+                        <input type="number" id="ipt_estoque" placeholder="Ex: 500000" min="0" />
+                    </div>
+                </div>
+
+                <div>
+                    <p class="titulo_caixa_texto">% de perdas adicionais</p>
+                    <div class="input-box">
+                        <input type="number" id="ipt_umidade" placeholder="Ex: 1.5" min="0" max="100" step="0.1" />
+                        <span class="icone-direita">%</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="button" class="login" onclick="calcular()">Calcular Impacto Total</button>
+
+            <hr class="divider" />
+
+            <div id="resultado">
+                <p class="resultado-placeholder"></p>
+            </div>
+
+            </div>
+
+    </main>
+
 </body>
 
 <script>
 
-    resultado.innerHTML=`<h3>Pressione o botão "Calcular Impacto Total" para ver resultados...</h3>`
-function calcular() {
+    resultado.innerHTML = `<h3>Pressione o botão "Calcular Impacto Total" para ver resultados...</h3>`
+    let periodoAtual = 1;
 
-    let periodo = Number(ipt_periodo.value);
+    function calcular() {
 
-    // TRANSPORTE
-    let cargasMes = Number(ipt_cargas.value);
-    let valorCarga = Number(ipt_valor.value);
-    let percProblema = Number(ipt_problema.value);
-    let percPerda = Number(ipt_perda.value);
+        let periodo = periodoAtual;
 
-    let totalCargas = cargasMes * periodo;
-    let faturamentoTransporte = totalCargas * valorCarga;
+        // TRANSPORTE
+        let cargasMes = Number(ipt_cargas.value);
+        let valorCarga = Number(ipt_valor.value);
+        let percProblema = Number(ipt_problema.value);
+        let percPerda = Number(ipt_perda.value);
 
-    let cargasProblema = totalCargas * (percProblema / 100);
-    let perdaPorCarga = valorCarga * (percPerda / 100);
-    let prejuizoTransporte = cargasProblema * perdaPorCarga;
+        let totalCargas = cargasMes * periodo;
 
-    // ESTOQUE
-    let estoque = Number(ipt_estoque.value);
-    let percUmidade = Number(ipt_umidade.value);
+        let cargasProblema = totalCargas * (percProblema / 100);
+        let perdaPorCarga = valorCarga * (percPerda / 100);
+        let prejuizoTransporte = cargasProblema * perdaPorCarga;
 
-    let prejuizoUmidade = estoque * (percUmidade / 100) * periodo;
+        // ESTOQUE
+        let estoque = Number(ipt_estoque.value);
+        let percUmidade = Number(ipt_umidade.value);
 
-    // RISCO TOTAL (falha grave)
-    let valorEmRisco = estoque;
+        let prejuizoUmidade = estoque * (percUmidade / 100) * periodo;
 
-    // PREJUÍZO TOTAL SEM SISTEMA
-    let prejuizoTotal = prejuizoTransporte + prejuizoUmidade;
+        // RISCO TOTAL
+        let valorEmRisco = estoque;
 
-    // FRIGOLOG reduz perdas
-    let reducao = prejuizoTotal * 0.75;
-    let prejuizoComSistema = prejuizoTotal - reducao;
+        // PREJUÍZO TOTAL SEM SISTEMA
+        let prejuizoTotal = prejuizoTransporte + prejuizoUmidade;
 
-    let economia = prejuizoTotal - prejuizoComSistema;
+        // FRIGOLOG reduz perdas
+        let reducao = prejuizoTotal * 0.75;
+        let prejuizoComSistema = prejuizoTotal - reducao;
+        let economia = prejuizoTotal - prejuizoComSistema;
 
-    // ENERGIA
-    let custoEnergia = estoque * 0.02 * periodo;
-    let economiaEnergia = custoEnergia * 0.15;
+        // ENERGIA
+        let custoEnergia = estoque * 0.02 * periodo;
+        let economiaEnergia = custoEnergia * 0.15;
 
-    // OPERAÇÃO MANUAL
-    let custoFuncionario = 2500 * periodo;
+        // OPERAÇÃO MANUAL
+        let custoFuncionario = 2500 * periodo;
 
-    // ROI
-    let custoSistema = economia * 0.05;
-    let payback = custoSistema / (economia / periodo);
+        // ROI
+        let custoSistema = economia * 0.05;
+        let payback = economia > 0 ? custoSistema / (economia / periodo) : 0;
 
-    resultado.innerHTML = `
-    <h2>Resultado Completo</h2>
+        resultado.innerHTML = resultado.innerHTML = `
+    <p class="resultado-title">Prejuízos sem FRIGOLOG</p>
 
-    <h3>Transporte</h3>
-    Prejuízo: <b style="color:red">R$ ${prejuizoTransporte.toFixed(2)}</b><br><br>
+    <div class="resultado">
 
-    <h3>Armazenamento</h3>
-    Perdas adicionais: <b style="color:red">R$ ${prejuizoUmidade.toFixed(2)}</b><br><br>
+        <div class="metrica danger">
+            <span class="mlabel">Transporte</span>
+            <div class="mval">R$ ${prejuizoTransporte.toFixed(2)}</div>
+        </div>
 
-    <h3>Prejuízo Total</h3>
-    <b style="color:red">R$ ${prejuizoTotal.toFixed(2)}</b><br><br>
+        <div class="metrica danger">
+            <span class="mlabel">Armazenamento</span>
+            <div class="mval">R$ ${prejuizoUmidade.toFixed(2)}</div>
+        </div>
 
-    <hr>
+        <div class="metrica danger">
+            <span class="mlabel">Prejuízo Total</span>
+            <div class="mval">R$ ${prejuizoTotal.toFixed(2)}</div>
+        </div>
 
-    <h3>Com FRIGOLOG</h3>
+    </div>
 
-    Prejuízo reduzido:
-    <b style="color:green">R$ ${prejuizoComSistema.toFixed(2)}</b><br><br>
+    <p class="resultado-title">Com FRIGOLOG</p>
 
-    Economia total:
-    <b style="color:blue">R$ ${economia.toFixed(2)}</b><br><br>
+    <div class="resultado">
 
-    <hr>
+        <div class="metrica success">
+            <span class="mlabel">Prejuízo Reduzido</span>
+            <div class="mval">R$ ${prejuizoComSistema.toFixed(2)}</div>
 
-    <h3>Risco Operacional</h3>
+        </div>
 
-    Valor em risco (estoque):
-    <b style="color:red">R$ ${valorEmRisco.toFixed(2)}</b><br><br>
+        <div class="metrica success">
+            <span class="mlabel">Economia Total</span>
+            <div class="mval">R$ ${economia.toFixed(2)}</div>
 
-    <hr>
+        </div>
 
-    <h3>Energia</h3>
+        <div class="metrica warn">
+            <span class="mlabel">Valor em Risco</span>
+            <div class="mval">R$ ${valorEmRisco.toFixed(2)}</div>
 
-    Economia energética:
-    <b style="color:green">R$ ${economiaEnergia.toFixed(2)}</b><br><br>
+        </div>
 
-    <hr>
+    </div>
 
-    <h3>Operação</h3>
+    <p class="resultado-title">Outros Ganhos</p>
 
-    Economia com automação:
-    <b style="color:green">R$ ${custoFuncionario.toFixed(2)}</b><br><br>
+    <div class="resultado">
 
-    <hr>
+        <div class="metrica success">
+            <span class="mlabel">Economia Energética</span>
+            <div class="mval">R$ ${economiaEnergia.toFixed(2)}</div>
 
-    <h3>ROI</h3>
+        </div>
 
-    Payback:
-    <b>${payback.toFixed(1)} meses</b><br><br>
+        <div class="metrica success">
 
-    <hr>
+            <span class="mlabel">Economia Operação </span>
+            <div class="mval">R$ ${custoFuncionario.toFixed(2)}</div>
 
-    <h3>Conclusão</h3>
+        </div>
 
-    Sua operação pode perder até 
-    <b style="color:red">R$ ${prejuizoTotal.toFixed(2)}</b> no período.<br><br>
+        <div class="metrica warn">
 
-    A FRIGOLOG transforma esse prejuízo em economia de 
-    <b style="color:blue">R$ ${economia.toFixed(2)}</b> e protege seu estoque.
-    `;
-}
+            <span class="mlabel">Roy</span>
+            <div class="mval">${payback.toFixed(1)} meses</div>
+
+        </div>
+        
+    </div>
+
+    <div class="conclusao-box">
+        Sua operação pode perder até <strong class="red">R$ ${prejuizoTotal.toFixed(2)}</strong> no período.<br>
+        A FRIGOLOG transforma esse prejuízo em economia de
+        <strong class="azul">R$ ${economia.toFixed(2)}</strong> e protege seu estoque.
+    </div>
+`;
+    }
+
+    function setPeriodo(val, btn) {
+        periodoAtual = val;
+        document.querySelectorAll('.button-periodo button').forEach(b => b.classList.remove('ativo'));
+        btn.classList.add('ativo');
+    }
+
 </script>
 
 </html>

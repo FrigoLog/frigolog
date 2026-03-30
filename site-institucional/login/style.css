@@ -8,7 +8,7 @@
     font-family: "Roboto", sans-serif;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@ body{
     background-color: #5BAFFE;
 }
 
-.container{
+.container {
     width: 420px;
     background-color: white;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -24,23 +24,43 @@ body{
     padding: 30px 40px;
     box-shadow: 0 0 10px black;
     border-radius: 15px;
-    
+
+}
+
+.container-simulador {
+    width: 700px;
+    background-color: white;
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: #fff;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px black;
+    border-radius: 15px;
 }
 
 
 .logo {
     text-align: center;
     margin-bottom: 20px;
+    
+}
+
+.logo .simulador {
+    text-align: center;
+    margin: 10px;
+    color: #c5c5c5;
+    font-size: 20px;
+    
 }
 
 .logo-row {
     display: flex;
-    align-items: center;  /* alinha verticalmente no centro */
+    align-items: center;
+    /* alinha verticalmente no centro */
     justify-content: center;
 }
 
-.logo .icon{
-    height: 50px; 
+.logo .icon {
+    height: 50px;
     width: auto;
 }
 
@@ -50,10 +70,23 @@ body{
     font-weight: bold;
 }
 
-.container .white { color: #5BAFFE; }
-.container .red  { color: #ff0000; }
+.container .white {
+    color: #5BAFFE;
+}
 
-.logo .input-controle{
+.container .red {
+    color: #ff0000;
+}
+
+.container-simulador .white {
+    color: #5BAFFE;
+}
+
+.container-simulador .red {
+    color: #ff0000;
+}
+
+.logo .input-controle {
     position: center;
     width: 64%;
     height: 20px;
@@ -65,19 +98,19 @@ body{
 
 }
 
-.logo .input-controle::placeholder{
+.logo .input-controle::placeholder {
     color: red;
     position: center;
 }
 
-.input-box{
+.input-box {
     position: relative;
     width: 100%;
     height: 50px;
     margin: 30px 0;
 }
 
-.input-box input{
+.input-box input {
     width: 100%;
     height: 100%;
     background-color: #F7F7F7;
@@ -89,7 +122,7 @@ body{
 
 }
 
-.input-box input::placeholder{
+.input-box input::placeholder {
     color: #c5c5c5;
 }
 
@@ -113,13 +146,16 @@ body{
 
 /* padding diferente para cada input */
 .input-box input[type="email"] {
-    padding: 20px 20px 20px 45px; /* espaço à esquerda para o envelope */
+    padding: 20px 20px 20px 45px;
+    /* espaço à esquerda para o envelope */
 }
 
 
 
-.input-box input[type="password"], .input-box input[type="text"]  {
-    padding: 20px 45px 20px 45px; /* espaço à direita para o olho */
+.input-box input[type="password"],
+.input-box input[type="text"] {
+    padding: 20px 45px 20px 45px;
+    /* espaço à direita para o olho */
 }
 
 /* Remove o ícone de olho nativo do navegador */
@@ -128,14 +164,14 @@ input::-ms-reveal {
 }
 
 
-.remember-forgot{
+.remember-forgot {
     display: flex;
     justify-content: space-between;
     color: #c5c5c5;
     margin: -15px 0 15px;
 }
 
-.remember-forgot label input{
+.remember-forgot label input {
     accent-color: #c5c5c5;
     margin-right: 5px;
 }
@@ -148,10 +184,10 @@ input::-ms-reveal {
 
 .remember-forgot a:hover {
     text-decoration: underline;
-    
+
 }
 
-.login{
+.login {
     width: 100%;
     height: 50px;
     background-color: #5BAFFE;
@@ -159,40 +195,98 @@ input::-ms-reveal {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    color:#fff;
+    color: #fff;
     font-weight: 600;
-    box-shadow: 0 0 10px rgba(0,0,0, .1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     margin-top: 20px;
 }
 
-.login:hover{
+.button-periodo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.anual {
+    flex: 1;
+    height: 46px;
+    border: 2px solid #DEDEDE;
+    border-radius: 40px;
+    background: #F7F7F7;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c5c5c5;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mensal {
+    flex: 1;
+    height: 46px;
+    border: 2px solid #DEDEDE;
+    border-radius: 40px;
+    background: #F7F7F7;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c5c5c5;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.anual.ativo {
+    background-color: #5BAFFE;
+    border-color: #5BAFFE;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.mensal:hover:not(.ativo) {
+    border-color: #5BAFFE;
+    color: #5BAFFE;
+}
+
+.mensal.ativo{
+    background-color: #5BAFFE;
+    border-color: #5BAFFE;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.anual:hover:not(.ativo) {
+    border-color: #5BAFFE;
+    color: #5BAFFE;
+}
+
+
+
+.login:hover {
     background-color: #80bef8;
     border: 2px solid rgba(255, 255, 255, .2);
     transition: 0.5s;
 }
 
-.register-link{
+.register-link {
     font-size: 14px;
     text-align: center;
     margin: 20px 0 15px;
 
 }
 
-.register-link p{
+.register-link p {
     text-decoration: none;
     color: #c5c5c5;
-    
+
 }
 
 
-.register-link a{
+.register-link a {
     text-decoration: none;
     color: #c5c5c5;
     font-weight: 600;
 
 }
 
-.register-link a:hover{
+.register-link a:hover {
     text-decoration: underline;
 }
 
@@ -204,21 +298,21 @@ input::-ms-reveal {
 }
 
 /* para alinhar o botao final e o de login */
-.posicao_botao_cadastro{
+.posicao_botao_cadastro {
     display: flex;
-     align-items: center;
-      flex-direction: column;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* criei o input de cadastro para poder ajustar a distancia da margem sem mudar a estrutura da pagina de login */
-.input-box-cadastro{
+.input-box-cadastro {
     position: relative;
     width: 100%;
     height: 50px;
     margin: 15px 0;
 }
 
-.input-box-cadastro input{
+.input-box-cadastro input {
     width: 100%;
     height: 100%;
     background-color: #F7F7F7;
@@ -230,16 +324,195 @@ input::-ms-reveal {
 
 }
 
-.input-box-cadastro input::placeholder{
+.input-box-cadastro input::placeholder {
     color: #c5c5c5;
 }
 
 .input-box-cadastro input[type="email"] {
-    padding: 20px 20px 20px 45px; /* espaço à esquerda para o envelope */
+    padding: 20px 20px 20px 45px;
+    /* espaço à esquerda para o envelope */
 }
 
 .input-box-cadastro input[type="password"],
 
-.input-box-cadastro input[type="text"]  {
-    padding: 20px 45px 20px 45px; /* espaço à direita para o olho */
+.input-box-cadastro input[type="text"] {
+    padding: 20px 45px 20px 45px;
+    /* espaço à direita para o olho */
 }
+
+
+
+/* Cria um layout de grade com duas colunas iguais lado a lado */
+.forms {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* espaço entre as colunas */
+      gap: 0 32px;
+    }
+ 
+    /* ── SECTION LABEL ── */
+    .label {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #5BAFFE;
+      margin: 8px 0 4px;
+      grid-column: 1 / -1;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #DEDEDE;
+    }
+ 
+    /* ── INPUT BOX ── */
+    .titulo_caixa_texto {
+      font-size: 15px;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 4px;
+    }
+ 
+    .input-box {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      margin: 10px 0 18px;
+    }
+ 
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background-color: #F7F7F7;
+      border: 2px solid #DEDEDE;
+      border-radius: 40px;
+      outline: none;
+      font-size: 15px;
+      color: black;
+      padding: 0 45px 0 20px;
+      transition: border-color 0.3s;
+    }
+ 
+    /* cor da borda */
+    .input-box input:focus {
+      border-color: #5BAFFE;
+    }
+ 
+    /* cor das letras dentro da box */
+    .input-box input::placeholder {
+      color: #c5c5c5;
+    }
+ 
+    .input-box .icone-direita {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: #c5c5c5;
+      font-weight: 600;
+      pointer-events: none;
+    }
+ 
+    .input-box .icone-esquerda {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #c5c5c5;
+      pointer-events: none;
+    }
+    
+    /* espaçamento do "Ex: 10000" para o ícone */
+    .input-box.has-prefix input {
+      padding-left: 36px;
+    }
+ 
+    /* estiliza o campo dica "Carga de R$10.000 com 10% de perda = R$1.000 de prejuízo"*/
+    .dica {
+      font-size: 11px;
+      color: #c5c5c5;
+      margin-top: -12px;
+      margin-bottom: 12px;
+      padding: 0 12px;
+      line-height: 1.5;
+    }
+    
+ 
+    .divider {
+      border-top: 2px solid #DEDEDE;
+      margin: 32px 0 24px;
+    }
+ 
+    /* ── RESULTADO ── */
+    #resultado {
+      color: #555;
+    }
+ 
+    .resultado-placeholder {
+      text-align: center;
+      color: #c5c5c5;
+      font-size: 14px;
+      padding: 20px 0;
+    }
+ 
+    .resultado {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+ 
+    .metrica {
+      background: #F7F7F7;
+      border: 2px solid #DEDEDE;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+ 
+    .metrica .mlabel {
+      font-size: 11px;
+      color: #c5c5c5;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+ 
+    .metrica .mval {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+ 
+    .metrica.danger { border-color: #ff4d4d; background: #fff5f5; }
+    .metrica.danger .mval { color: #ff0000; }
+ 
+    .metrica.success { border-color: #5BAFFE; background: #f0f8ff; }
+    .metrica.success .mval { color: #5BAFFE; }
+ 
+    .metrica.warn { border-color: #ffc857; background: #fffbf0; }
+    .metrica.warn .mval { color: #d48800; }
+ 
+    .conclusao-box {
+      background: #F7F7F7;
+      border: 2px solid #DEDEDE;
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555;
+    }
+ 
+    .conclusao-box strong.azul { color: #5BAFFE; }
+    .conclusao-box strong.red  { color: #ff0000; }
+ 
+    .resultado-title {
+      text-align: center;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #5BAFFE;
+      margin: 20px 0 20px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #DEDEDE;
+    }
