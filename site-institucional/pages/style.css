@@ -340,7 +340,9 @@ input::-ms-reveal {
     /* espaço à direita para o olho */
 }
 
-
+.logo a {
+    text-decoration: none;
+}
 
 /* Cria um layout de grade com duas colunas iguais lado a lado */
 .forms {
