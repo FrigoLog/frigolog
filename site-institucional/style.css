@@ -19,7 +19,6 @@ body {
 
 .container {
     width: 100%;
-    justify-self: center;
     margin: 0;
 }
 
@@ -28,14 +27,28 @@ body {
     width: 100%;
     border-bottom: 1px solid #d9d9d9;
     background-color: #f5f6f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.icon-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.title-logo {
+    font-size: 30px;
 }
 
 .nav {
-    width: 80%;
-    height: 72px;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .logo {
@@ -51,12 +64,33 @@ body {
 .menu a {
     text-decoration: none;
     color: #111827;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
+}
+
+.underline-animation {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: currentColor;
+  transition: width 0.5s ease;
+}
+
+.underline-animation:hover::after {
+  width: 100%;
 }
 
 .acoes {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
@@ -87,26 +121,40 @@ a {
     box-shadow: 0 4px 10px rgba(91, 167, 255, 0.35);
 }
 
+.btn-azul:hover {
+    background-color: #2e5581;
+}
+
 .btn-branco {
     background-color: transparent;
     color: #0057c2;
     border: 2px solid #0057c2;
 }
 
+.btn-branco:hover {
+    background-color: #0057c2;
+    color: white;
+}
+
 
 .hero {
-    width: 80%;
-    justify-self: center;
+    width: 100%;
     padding: 36px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .hero-conteudo {
     display: flex;
     align-items: center;
-    
+    justify-content: center;
+    width: 85%;
+}
+
+.hero-fluxo {
+    width: 85%;
 }
 
 .hero-texto {
@@ -125,7 +173,6 @@ a {
 
 .hero-imagem img {
     width: 100%;
-    max-width: 600px;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
     display: block;
@@ -142,7 +189,8 @@ a {
     padding: 8px 14px;
     border-radius: 20px;
     margin-bottom: 22px;
-    min-width: 300px;
+    width: 70%;
+    font-weight: 1000;
 }
 
 
@@ -270,4 +318,14 @@ p {
 .circle img {
     width: 60%;
     height: 50%;
+}
+
+.red {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.white {
+    color: #5BAFFE;
+    font-weight: bold;
 }

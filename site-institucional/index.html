@@ -1,68 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrigoLog</title>
 
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
+
 <body>
     <!-- Cabeçalho -->
-    <header>
-        <header class="cabecalho">
-    <div class="container nav">
-      <img src="./imgs/frigolog_sem_fundo_v2.png" alt="Logo Frigolog" class="logo">
+    <header class="cabecalho">
+        <div class="container nav">
+            <div class="icon-logo">
+                <img src="./assets/img/iconlogo.png" alt="Logo Frigolog" width="30%">
+                <span class="white title-logo">FRIGO<span class="red title-logo">LOG</span></span>
+            </div>
 
-      <nav class="menu">
-        <a href="index.html">Home</a>
-        <a href="./">Sobre Nós</a>
-        <a href="./">Nossos Resultados</a>
-      </nav>
+            <nav class="menu">
+                <a href="index.html" class="underline-animation">Home</a>
+                <a href="./" class="underline-animation">Sobre Nós</a>
+                <a href="./" class="underline-animation">Nossos Resultados</a>
+            </nav>
 
-      <div class="acoes">
-        <a class="btn btn-azul" href='cadastro\paginaCadastro.html'>
-            <span>Ser cliente!</span> 
-        <a>
-        <a class="btn btn-branco" href='login\login.html'>
-            <span>Já sou cliente</span>
-        <a>
-      </div>
-    </div>
-  </header>
+            <div class="acoes">
+                <a class="btn btn-azul" href='pages/paginaCadastro.html'>
+                    <span>Ser cliente</span>
+                </a>
+                <a class="btn btn-branco" href='pages/login.html'>
+                    <span>Já sou cliente</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
-  <main class="hero">
-    <div class="container hero-conteudo">
-      
-      <div class="hero-texto" >
-        <div class="tag"> CONTROLE TÉRMICO DE PONTA A PONTA</div>
+    <main class="hero">
+        <div class="container hero-conteudo">
 
-        <h1>
-          Garantindo a <br>
-          Qualidade das <br>
-          Carnes Vermelhas
-        </h1>
+            <div class="hero-texto">
+                <div class="tag"> CONTROLE TÉRMICO DE PONTA A PONTA</div>
 
-        <h2>
-          Da <span>Produção ao <br> Mercado Brasileiro</span>
-        </h2>
+                <h1>
+                    Garantindo a <br>
+                    Qualidade das <br>
+                    Carnes Vermelhas
+                </h1>
 
-        <p class="descricao">
-          Nossa solução de monitoramento de ponta a ponta oferece
-          visibilidade em tempo real para indústrias das carnes vermelhas,
-          garantindo a qualidade dos produtos e assegurando conformidade
-          com as normas regulatórias do mercado.
-        </p>
-      </div>
+                <h2>
+                    Da <span>Produção ao <br> Mercado Brasileiro</span>
+                </h2>
 
-      <div class="hero-imagem alinhamento">
-        <img src="./imgs/frigolog.png" alt="Prédio Frigolog">
-      </div>
-      </div>
+                <p class="descricao">
+                    Nossa solução de monitoramento de ponta a ponta oferece
+                    visibilidade em tempo real para indústrias das carnes vermelhas,
+                    garantindo a qualidade dos produtos e assegurando conformidade
+                    com as normas regulatórias do mercado.
+                </p>
+            </div>
+
+            <div class="hero-imagem alinhamento">
+                <img src="./assets/img/frigolog.png" alt="Prédio Frigolog">
+            </div>
+        </div>
 
         <!-- Fluxo -->
-        <div>
+        <div class="hero-fluxo">
             <!-- Texto -->
             <div class="area_texto">
                 <h2 class="titulo">O Fluxo de Ponta a Ponta</h2>
@@ -75,31 +79,34 @@
             <div class="diagrama">
                 <div class="step">
                     <div class="circle">
-                        <img src="./imgs/industria.png" alt="Imagem de uma industria">
+                        <img src="./assets/img/industria.png" alt="Imagem de uma industria">
                     </div>
                     <div class="step_descricao">
                         <h3>1. Indústria e Produção</h3>
-                        <p class="cinza centralizado">Embalagem segura e calibração inicial do sensor durante a fase de formulação.</p>
+                        <p class="cinza centralizado">Embalagem segura e calibração inicial do sensor durante a fase de
+                            formulação.</p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="circle">
-                        <img src="./imgs/caminhao.png" alt="Imagem de um caminhão">
+                        <img src="./assets/img/caminhao.png" alt="Imagem de um caminhão">
                     </div>
                     <div class="step_descricao">
                         <h3>2. Logística e Transporte</h3>
-                        <p class="cinza centralizado">Rastreamento térmico em tempo real durante o trânsito entre fronteiras e ambientes.</p>
+                        <p class="cinza centralizado">Rastreamento térmico em tempo real durante o trânsito entre
+                            fronteiras e ambientes.</p>
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="circle">
-                        <img src="./imgs/mercado.png" alt="Imagem de um mercado">
+                        <img src="./assets/img/mercado.png" alt="Imagem de um mercado">
                     </div>
                     <div class="step_descricao">
                         <h3>3. Mercados e Açougues</h3>
-                        <p class="cinza centralizado">Verificação final de entrega e registro automatizado de armazenamento.</p>
+                        <p class="cinza centralizado">Verificação final de entrega e registro automatizado de
+                            armazenamento.</p>
                     </div>
                 </div>
             </div>
@@ -111,4 +118,5 @@
         </div>
     </main>
 </body>
+
 </html>
