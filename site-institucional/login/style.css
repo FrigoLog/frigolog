@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+/* aplica estilo a todos os elementos de uma página web simultaneamente */
 * {
     margin: 0;
     padding: 0;
@@ -482,14 +483,33 @@ input::-ms-reveal {
       margin-top: 4px;
     }
  
-    .metrica.danger { border-color: #ff4d4d; background: #fff5f5; }
-    .metrica.danger .mval { color: #ff0000; }
+    .metrica.danger { 
+        border-color: #ff4d4d; 
+        background: #fff5f5; 
+    }
+
+    .metrica.danger .mval { 
+        color: #ff0000; 
+    }
  
-    .metrica.success { border-color: #5BAFFE; background: #f0f8ff; }
-    .metrica.success .mval { color: #5BAFFE; }
+    .metrica.success { 
+        border-color: #5BAFFE; 
+        background: #f0f8ff; 
+    }
+
+    
+    .metrica.success .mval { 
+        color: #5BAFFE; 
+    }
  
-    .metrica.warn { border-color: #ffc857; background: #fffbf0; }
-    .metrica.warn .mval { color: #d48800; }
+    .metrica.warn { 
+        border-color: #ffc857; 
+        background: #fffbf0; 
+    }
+
+    .metrica.warn .mval { 
+        color: #d48800; 
+    }
  
     .conclusao-box {
       background: #F7F7F7;
@@ -501,8 +521,12 @@ input::-ms-reveal {
       color: #555;
     }
  
-    .conclusao-box strong.azul { color: #5BAFFE; }
-    .conclusao-box strong.red  { color: #ff0000; }
+    .conclusao-box strong.azul { 
+        color: #5BAFFE; 
+    }
+    .conclusao-box strong.red  { 
+        color: #ff0000; 
+    }
  
     .resultado-title {
       text-align: center;
