@@ -39,7 +39,7 @@ body {
 }
 
 .logo {
-    width: 150px;
+    width: 250px;
     height: auto;
 }
 
@@ -61,6 +61,9 @@ body {
 }
 
 .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 145px;
     height: 40px;
     padding: 0 18px;
@@ -70,6 +73,11 @@ body {
     cursor: pointer;
     transition: 0.2s;
     
+}
+
+a {
+    text-decoration: none;
+    font-size: 36px;
 }
 
 .btn-azul {
