@@ -144,6 +144,8 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    gap: 50px;
 }
 
 .hero-conteudo {
@@ -161,7 +163,6 @@ a {
     width: 85%;
     display: flex;
     flex-direction: column;
-    
 }
 
 .hero-imagem {
@@ -199,7 +200,7 @@ a {
     line-height: 1.05;
     font-weight: 800;
     color: #111a3a;
-    margin-bottom: 8px;
+    margin-bottom: -40px;
 }
 
 .hero-texto h2 {
@@ -207,7 +208,6 @@ a {
     line-height: 1.08;
     font-weight: 800;
     color: #111a3a;
-    margin-bottom: 22px;
 }
 
 .hero-texto h2 span {
