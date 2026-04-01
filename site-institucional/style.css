@@ -329,3 +329,15 @@ p {
     color: #5BAFFE;
     font-weight: bold;
 }
+
+#simulador {
+    width: 85%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+#simulador iframe {
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+}
