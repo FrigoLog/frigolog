@@ -80,3 +80,14 @@ CREATE TABLE leitura (
     fk_sensor INT,
     CONSTRAINT fkLeituraSensor FOREIGN KEY (fk_sensor) REFERENCES sensor (id_sensor)
 );
+
+INSERT INTO empresa (nome, cnpj) VALUE ('FrigoLog Desenv', '12345678900012');
+INSERT INTO usuario (nome, senha, fk_empresa) VALUE ('Bruno Rafael', 'bruno123', 1);
+INSERT INTO email (email, fk_usuario) VALUE ('bruno.rafael@frigolog.com', 1);
+INSERT INTO administrador (fk_usuario) VALUE (1);
+INSERT INTO tipo_ambiente (tipo) VALUES ('Geladeira', 'Comércio');
+INSERT INTO ambiente_terceiros (nome, fk_empresa, fk_tipo_ambiente) VALUE ('Assaí Atacadista', 1, 2);
+INSERT INTO endereco (cep, numero, fk_ambiente) VALUE ('09960170', '1003', 1);
+INSERT INTO unidade (nome, fk_tipo_unidade, fk_ambiente) VALUE ('Geladeira A', 1, 1);
+INSERT INTO configuracao_unidade (temp_min, temp_max, fk_unidade) VALUE (0, 4, 1);
+INSERT INTO sensor (identificador, fk_unidade) VALUE ('SENSOR_GELADEIRA_A_98761', 1);
