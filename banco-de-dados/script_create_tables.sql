@@ -91,3 +91,75 @@ INSERT INTO endereco (cep, numero, fk_ambiente) VALUE ('09960170', '1003', 1);
 INSERT INTO unidade (nome, fk_tipo_unidade, fk_ambiente) VALUE ('Geladeira A', 1, 1);
 INSERT INTO configuracao_unidade (temp_min, temp_max, fk_unidade) VALUE (0, 4, 1);
 INSERT INTO sensor (identificador, fk_unidade) VALUE ('SENSOR_GELADEIRA_A_98761', 1);
+
+SELECT 
+    u.id_usuario,
+    u.nome AS usuario,
+    e.nome AS empresa,
+    e.cnpj
+FROM usuario u
+JOIN empresa e 
+    ON u.fk_empresa = e.id_empresa;
+
+SELECT 
+    u.nome AS usuario,
+    em.email,
+    e.nome AS empresa
+FROM usuario u
+JOIN email em 
+    ON em.fk_usuario = u.id_usuario
+JOIN empresa e 
+    ON u.fk_empresa = e.id_empresa;
+
+SELECT 
+    a.nome AS ambiente,
+    t.tipo AS tipo_ambiente,
+    e.nome AS empresa
+FROM ambiente_terceiros a
+JOIN tipo_ambiente t 
+    ON a.fk_tipo_ambiente = t.id_tipo_ambiente
+JOIN empresa e 
+    ON a.fk_empresa = e.id_empresa;
+
+SELECT 
+    s.identificador,
+    l.temperatura,
+    l.data_hora
+FROM sensor s
+JOIN leitura l 
+    ON l.fk_sensor = s.id_sensor;
+
+SELECT 
+    e.nome AS empresa,
+    u.nome AS usuario,
+    em.email,
+    a.nome AS ambiente,
+    t.tipo AS tipo_ambiente,
+    en.cep,
+    en.numero,
+    un.nome AS unidade,
+    c.temp_min,
+    c.temp_max,
+    s.identificador AS sensor,
+    l.temperatura,
+    l.data_hora
+FROM empresa e
+JOIN usuario u 
+    ON u.fk_empresa = e.id_empresa
+LEFT JOIN email em 
+    ON em.fk_usuario = u.id_usuario
+LEFT JOIN ambiente_terceiros a 
+    ON a.fk_empresa = e.id_empresa
+LEFT JOIN tipo_ambiente t 
+    ON t.id_tipo_ambiente = a.fk_tipo_ambiente
+LEFT JOIN endereco en 
+    ON en.fk_ambiente = a.id_ambiente
+LEFT JOIN unidade un 
+    ON un.fk_ambiente = a.id_ambiente
+LEFT JOIN configuracao_unidade c 
+    ON c.fk_unidade = un.id_unidade
+LEFT JOIN sensor s 
+    ON s.fk_unidade = un.id_unidade
+LEFT JOIN leitura l 
+    ON l.fk_sensor = s.id_sensor;
+
