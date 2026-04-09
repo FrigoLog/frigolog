@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashStyle.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li>Dashboard</li>
+                <li>Relatórios</li>
+                <li>Configurações</li>
+            </ul>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div class="content">
+            
+            <div class="card">
+                <h1>Dashboard Rascunho</h1>
+
+                <div class="row">
+                    <div class="cardIndicadores">
+                        <h3>Ambientes Acima Da Temperatura</h3>
+                        <span class="dados">3</span>
+                    </div>
+
+                    <div class="cardIndicadores">
+                        <h3>Temperatura Média Diária - Câmara Fria</h3>
+                        <span class="dados">2°C</span>
+                    </div>
+
+                    <div class="cardIndicadores">
+                        <h3>Temperatura Média Diária - Transporte</h3>
+                        <span class="dados">4°C</span>
+                    </div>
+
+                    <div class="cardIndicadores">
+                        <h3>Temperatura Média Diária - Unidade</h3>
+                        <span class="observacao">
+                            *Unidade é o ambiente relacionado a fase final da cadeia
+                        </span>
+                        <br><br>
+                        <span class="dados">5°C</span>
+                    </div>
+                </div>
+
+                <div class="card2">
+                    <canvas id="grafico"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('grafico');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+      datasets: [{
+        label: 'Temperatura (°C)',
+        data: [2, 3, 4, 3, 5, 4],
+        borderWidth: 2,
+        borderColor: 'red',
+        backgroundColor: 'rgba(255,0,0,0.2)',
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+</html>
