@@ -1,130 +1,219 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
-    
+<html lang="pt-BR" style="scroll-behavior: smooth;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrigoLog</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-    <!-- Cabeçalho -->
+
+    <!-- CABEÇALHO -->
     <header class="cabecalho">
         <div class="container nav">
-            <div class="icon-logo">
-                <img src="./assets/img/iconlogo.png" alt="Logo Frigolog" width="30%">
-                <span class="white title-logo">FRIGO<span class="red title-logo">LOG</span></span>
+
+            <!-- LOGO (ESQUERDA) -->
+            <div class="logo-row">
+                <img src="./assets/img/iconlogo.png" alt="Logo FrigoLog">
+                <span class="title-logo">
+                    <span class="white">FRIGO</span><span class="red">LOG</span>
+                </span>
             </div>
 
+            <!-- MENU (CENTRO) -->
             <nav class="menu">
                 <a href="index.html" class="underline-animation">Home</a>
-                <a href="#" class="underline-animation">Sobre Nós</a>
-                <a href="#diagrama" class="underline-animation">Nossos Resultados</a>
+                <a href="#sobre" class="underline-animation">Sobre nós</a>
                 <a href="#simulador" class="underline-animation">Simulador Financeiro</a>
             </nav>
 
+            <!-- AÇÕES (DIREITA) -->
             <div class="acoes">
-                <a class="btn btn-azul" href='./pages/paginaCadastro.html'>
-                    <span>Ser cliente</span>
+                <a class="btn btn-azul" href="./pages/paginaCadastro.html">
+                    Ser cliente
                 </a>
-                <a class="btn btn-branco" href='./pages/login.html'>
-                    <span>Já sou cliente</span>
+                <a class="btn btn-branco" href="./pages/login.html">
+                    Já sou cliente
                 </a>
             </div>
+
         </div>
     </header>
 
-    <main class="hero">
-        <div class="container hero-conteudo">
+    <section class="hero">
 
-            <div class="hero-texto">
-                <div class="tag"> CONTROLE TÉRMICO DE PONTA A PONTA</div>
+        <div class="imagem-fundo">
 
-                <h1>
-                    Garantindo a <br>
-                    Qualidade das <br>
-                    Carnes Vermelhas
-                </h1>
+            <div class="container hero-conteudo">
 
-                <h2>
-                    Da <span>Produção ao <br> Mercado Brasileiro</span>
-                </h2>
+                <div class="hero-texto">
 
-                <p class="descricao">
-                    Nossa solução de monitoramento de ponta a ponta oferece
-                    visibilidade em tempo real para indústrias das carnes vermelhas,
-                    garantindo a qualidade dos produtos e assegurando conformidade
-                    com as normas regulatórias do mercado.
-                </p>
-            </div>
+                    <h1>
+                        Garantindo a <br>
+                        Qualidade das <br>
+                        Carnes Vermelhas
+                    </h1>
 
-            <div class="hero-imagem alinhamento">
-                <img src="./assets/img/frigolog.png" alt="Prédio Frigolog">
-            </div>
-        </div>
+                    <h2>
+                        Da <span>Produção ao <br> Mercado Brasileiro</span>
+                    </h2>
 
-        <!-- Fluxo -->
-        <div class="hero-fluxo">
-            <!-- Texto -->
-            <div class="area_texto">
-                <h2 class="titulo">O Fluxo de Ponta a Ponta</h2>
-                <p class="cinza">
-                    Mantendo o <span class="vermelhoClaro">'Padrão FrigoLog'</span> durante toda a jornada.
-                </p>
-            </div>
+                    <p class="descricao">
+                        Nossa solução de monitoramento de ponta a ponta oferece
+                        visibilidade em tempo real para indústrias das carnes vermelhas,
+                        garantindo a qualidade dos produtos e assegurando conformidade
+                        com as normas regulatórias do mercado.
+                    </p>
 
-            <!-- Diagrama -->
-            <div class="diagrama" id="diagrama">
-                <div class="step">
-                    <div class="circle">
-                        <img src="./assets/img/industria.png" alt="Imagem de uma industria">
-                    </div>
-                    <div class="step_descricao">
-                        <h3>1. Indústria e Produção</h3>
-                        <p class="cinza centralizado">Embalagem segura e calibração inicial do sensor durante a fase de
-                            formulação.</p>
-                    </div>
                 </div>
 
-                <div class="step">
-                    <div class="circle">
-                        <img src="./assets/img/caminhao.png" alt="Imagem de um caminhão">
-                    </div>
-                    <div class="step_descricao">
-                        <h3>2. Logística e Transporte</h3>
-                        <p class="cinza centralizado">Rastreamento térmico em tempo real durante o trânsito entre
-                            fronteiras e ambientes.</p>
-                    </div>
+                <div class="hero-imagem alinhamento">
+                    <img src="./assets/img/22066 1.png" alt="Prédio Frigolog">
                 </div>
 
-                <div class="step">
-                    <div class="circle">
-                        <img src="./assets/img/mercado.png" alt="Imagem de um mercado">
-                    </div>
-                    <div class="step_descricao">
-                        <h3>3. Mercados e Açougues</h3>
-                        <p class="cinza centralizado">Verificação final de entrega e registro automatizado de
-                            armazenamento.</p>
-                    </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="sobre" id="sobre">
+        <div class="cards-sobre">
+
+            <!-- SOBRE NÓS -->
+            <div class="bloco">
+                <h3 class="titulo-card">SOBRE NÓS</h3>
+                <div class="card">
+                    <p>
+                        Somos uma empresa especializada em monitoramento via sensorial para controlar temperaturas
+                        durante o processo do transporte de alimentos. Visando a segurança do produto durante todo o
+                        caminho desejado.
+                    </p>
                 </div>
             </div>
+
+            <!-- OBJETIVO -->
+            <div class="bloco">
+                <h3 class="titulo-card">NOSSO OBJETIVO</h3>
+                <div class="card">
+                    <p>
+                        Garantir a segurança e a qualidade dos alimentos durante todo o processo de transporte, por meio
+                        de soluções de monitoramento sensorial que permitem o controle preciso da temperatura em tempo
+                        real, assegurando a integridade do produto desde a origem até o destino final.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Fluxo de ponta a ponta -->
+    <div class="hero-fluxo">
+        <div class="area_texto">
+            <h2 class="titulo">O Fluxo de Ponta a Ponta</h2>
+            <p class="cinza">
+                Mantendo o <span class="vermelhoClaro">'Padrão FrigoLog'</span> durante toda a jornada.
+            </p>
         </div>
 
-        <!-- Simulador Financeiro-->
-        <div id="simulador">
-            <iframe src="./Simulador/Simulador_Financeiro_FRIGOLOG.html"
-                    width="100%"
-                    height="1500px"
-                    scrolling="no"
-                    style="border: none;">
-            </iframe>
+        <div class="diagrama" id="diagrama">
+
+            <div class="step">
+                <div class="circle">
+                    <img src="./assets/img/industria.png" alt="Indústria">
+                </div>
+                <div class="step_descricao">
+                    <h3>1. Indústria e Produção</h3>
+                    <p class="cinza centralizado">
+                        Embalagem segura e calibração inicial do sensor durante a fase de formulação.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="circle">
+                    <img src="./assets/img/caminhao.png" alt="Transporte">
+                </div>
+                <div class="step_descricao">
+                    <h3>2. Logística e Transporte</h3>
+                    <p class="cinza centralizado">
+                        Rastreamento térmico em tempo real durante o trânsito entre fronteiras e ambientes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="circle">
+                    <img src="./assets/img/mercado.png" alt="Mercado">
+                </div>
+                <div class="step_descricao">
+                    <h3>3. Mercados e Açougues</h3>
+                    <p class="cinza centralizado">
+                        Verificação final de entrega e registro automatizado de armazenamento.
+                    </p>
+                </div>
+            </div>
+
         </div>
+    </div>
+
+    <!-- Simulador Financeiro -->
+    <div id="simulador">
+        <iframe src="./Simulador/Simulador_Financeiro_FRIGOLOG.html" height="900px"></iframe>
+    </div>
+
     </main>
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <!-- LOGO + DESCRIÇÃO -->
+            <div class="footer-col">
+                <div class="logo-row">
+                    <img src="./assets/img/iconlogo.png" alt="Logo">
+                    <span class="title-logo">
+                        <span class="white">FRIGO</span><span class="red">LOG</span>
+                    </span>
+                </div>
+
+                <p class="footer-desc">
+                    Monitoramento inteligente da cadeia fria, garantindo qualidade
+                    e segurança no transporte de alimentos do início ao fim.
+                </p>
+            </div>
+
+            <!-- NAVEGAÇÃO -->
+            <div class="footer-col">
+                <h3>Links</h3>
+                <a href="#">Home</a>
+                <a href="#sobre">Sobre nós</a>
+                <a href="#simulador">Simulador</a>
+            </div>
+
+            <!-- CONTATO -->
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p>Email: contato@frigolog.com</p>
+                <p>Telefone: (11) 99999-9999</p>
+                <p>São Paulo - SP</p>
+            </div>
+
+            <!-- REDES -->
+            <div class="footer-col">
+                <h3>Redes</h3>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">WhatsApp</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+</html>
+
 </body>
 
 </html>
