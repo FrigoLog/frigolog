@@ -46,7 +46,34 @@
     <div class="conteudo">
 
         <div id="dashboard" class="tela">
-            <h1>Dashboard</h1>
+
+            <!-- KPIs -->
+            <div class="kpis">
+                <div class="kpi-card">
+                    <div class="kpi-bar"></div>
+                    <h3>Temperatura Média</h3>
+                    <p id="kpiTemp">-- °C</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-bar"></div>
+                    <h3>Alertas Ativos</h3>
+                    <p id="kpiAlertas">--</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-bar"></div>
+                    <h3>% Dentro do Padrão</h3>
+                    <p id="kpiPercentual">--%</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-bar"></div>
+                    <h3>Unidades Monitoradas</h3>
+                    <p id="kpiUnidades">--</p>
+                </div>
+            </div>
+
         </div>
 
         <div id="unidades" class="tela">
@@ -60,7 +87,105 @@
     </div>
 </body>
 <script>
-    trocarTela('dashboard');
+    const unidades = [
+        { nome: "Freezer 01", tipo: "Freezer", temp: 2 },
+        { nome: "Câmara Fria 02", tipo: "Câmara", temp: 5 },
+        { nome: "Caminhão 03", tipo: "Caminhão", temp: 14 },
+        { nome: "Geladeira 04", tipo: "Geladeira", temp: -1 },
+        { nome: "Freezer 05", tipo: "Freezer", temp: 3 }
+    ];
+
+    function atualizarDados() {
+        let soma = 0;
+        let alertas = 0;
+        let dentro_da_faixa = 0;
+
+        for (let i = 0; i < unidades.length; i++) {
+
+            // // simula variação de temperatura
+            // unidades[i].temp += (Math.random() * 2 - 1);
+
+            soma += unidades[i].temp;
+
+            if (unidades[i].temp < 0 || unidades[i].temp > 4) {
+                alertas++;
+            } else {
+                dentro_da_faixa++;
+            }
+        }
+
+        let media = (soma / unidades.length).toFixed(1);
+        let percentual = ((dentro_da_faixa / unidades.length) * 100).toFixed(0);
+
+        // mudar cores dos kpis de acordo com valor
+
+        // temp media
+        const kpiTemp = document.getElementById("kpiTemp");
+        const cardTemp = kpiTemp.parentElement;
+
+        kpiTemp.innerText = media + " °C";
+
+        // limpa todos os estilos
+        kpiTemp.classList.remove("kpi-normal", "kpi-alerta", "kpi-critico");
+        cardTemp.classList.remove("normal", "alerta", "critico");
+
+        if (media >= 0 && media <= 4) {
+            kpiTemp.classList.add("kpi-normal");
+            cardTemp.classList.add("normal");
+        } else if ((media >= -1 && media < 0) || (media > 4 && media <= 6)) {
+            kpiTemp.classList.add("kpi-alerta");
+            cardTemp.classList.add("alerta");
+
+        } else {
+            kpiTemp.classList.add("kpi-critico");
+            cardTemp.classList.add("critico");
+        }
+
+        //alertas
+        const kpiAlertas = document.getElementById("kpiAlertas");
+        const cardAlertas = kpiAlertas.parentElement;
+
+        kpiAlertas.innerText = alertas;
+
+        kpiAlertas.classList.remove("kpi-normal", "kpi-alerta", "kpi-critico");
+        cardAlertas.classList.remove("normal", "alerta", "critico");
+
+        if (alertas === 0) {
+            kpiAlertas.classList.add("kpi-normal");
+            cardAlertas.classList.add("normal");
+
+        } else if (alertas <= 2) {
+            kpiAlertas.classList.add("kpi-alerta");
+            cardAlertas.classList.add("alerta");
+
+        } else {
+            kpiAlertas.classList.add("kpi-critico");
+            cardAlertas.classList.add("critico");
+        }
+
+        const kpiPercentual = document.getElementById("kpiPercentual");
+        const cardPercentual = kpiPercentual.parentElement;
+
+        kpiPercentual.innerText = percentual + "%";
+
+        kpiPercentual.classList.remove("kpi-normal", "kpi-alerta", "kpi-critico");
+        cardPercentual.classList.remove("normal", "alerta", "critico");
+
+        if (percentual >= 90) {
+            kpiPercentual.classList.add("kpi-normal");
+            cardPercentual.classList.add("normal");
+
+        } else if (percentual >= 70) {
+            kpiPercentual.classList.add("kpi-alerta");
+            cardPercentual.classList.add("alerta");
+
+        } else {
+            kpiPercentual.classList.add("kpi-critico");
+            cardPercentual.classList.add("critico");
+        }
+
+        document.getElementById("kpiUnidades").innerText = unidades.length;
+    }
 
     function trocarTela(id) {
         const telas = document.querySelectorAll('.tela');
@@ -69,6 +194,10 @@
         }
         document.getElementById(id).classList.add('ativa');
     }
+
+    trocarTela('dashboard');
+    atualizarDados();
+
 </script>
 
 </html>
