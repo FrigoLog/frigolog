@@ -35,12 +35,6 @@
             <span class="icon">❄️</span>
             <span class="text">Unidades</span>
         </div>
-
-        <div class="menu-item" onclick="trocarTela('historico')">
-            <span class="icon">📈</span>
-            <span class="text">Histórico</span>
-        </div>
-
     </div>
 
     <div class="conteudo">
@@ -48,244 +42,536 @@
         <div id="dashboard" class="tela">
 
             <div class="kpis">
+
                 <div class="kpi-card">
                     <div class="kpi-bar"></div>
-                    <h3>Temperatura Média</h3>
-                    <p id="kpiTemp">-- °C</p>
+                    <h3>Total de Alertas Gerados</h3>
+                    <p id="kpiTotalAlertas">--</p>
                 </div>
 
                 <div class="kpi-card">
                     <div class="kpi-bar"></div>
-                    <h3>Alertas Ativos</h3>
-                    <p id="kpiAlertas">--</p>
+                    <h3>Unidades em Alerta Agora</h3>
+                    <p id="kpiAlertasAtivos">--</p>
                 </div>
 
                 <div class="kpi-card">
                     <div class="kpi-bar"></div>
-                    <h3>% Dentro do Padrão</h3>
-                    <p id="kpiPercentual">--%</p>
+                    <h3>Unidades Críticas Agora</h3>
+                    <p id="kpiCriticosAtivos">--</p>
                 </div>
 
                 <div class="kpi-card">
                     <div class="kpi-bar"></div>
-                    <h3>Unidades Monitoradas</h3>
-                    <p id="kpiUnidades">--</p>
+                    <h3>% de Conformidade do Sistema</h3>
+                    <p id="kpiConformidade">--%</p>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-bar"></div>
+                    <h3>Melhor unidade do sistema</h3>
+                    <p id="kpiMelhorUnidade" style="font-size: 18px;">--</p>
+                </div>
+            </div>
+
+            <div id="insights" class="insights-container">
+
+            </div>
+
+            <div class="graficos">
+                <div class="grafico-card">
+                    <h3>Ranking de risco (Unidades com maiores distâncias da faixa ideal de temperatura)</h3>
+                    <div class="grafico-container">
+                        <canvas id="graficoRisco"></canvas>
+                    </div>
+                </div>
+
+                <div class="grafico-card">
+                    <h3>Status das unidades do sistema</h3>
+                    <div class="grafico-container">
+                        <canvas id="graficoDonut"></canvas>
+                    </div>
                 </div>
             </div>
 
             <div class="graficos">
-
                 <div class="grafico-card">
-                    <h3>Temperatura em Tempo Real (20 unidades com maior distância da faixa ideal)</h3>
-                    <div class="grafico-container">
-                        <canvas id="graficoBarra"></canvas>
+                    <div class="grafico-header">
+                        <div class="grafico-title">
+                            <h3>Linha Temporal da Conformidade do Sistema</h3>
+                            <span class="grafico-subtitle">Visão de performance ao longo do tempo</span>
+                        </div>
+
+                        <div class="grafico-filtro">
+                            <label for="filtroConformidade">Período</label>
+                            <select id="filtroConformidade" onchange="renderGraficoConformidade()">
+                                <option value="dia">Dia</option>
+                                <option value="semana">Semana</option>
+                                <option value="mes">Mês</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="grafico-card">
-                    <h3>Status das Unidades</h3>
                     <div class="grafico-container">
-                        <canvas id="graficoPizza"></canvas>
+                        <canvas id="graficoConformidadeTemporal"></canvas>
                     </div>
                 </div>
             </div>
-
-            <div class="insights">
-                <h2>Insights do Sistema</h2> <br>
-                <div id="insights-list"></div>
-            </div>
-
         </div>
 
         <div id="unidades" class="tela">
             <h1>Unidades</h1>
         </div>
-
-        <div id="historico" class="tela">
-            <h1>Histórico</h1>
-        </div>
-
     </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const unidades = [
-        { id: 1, nome: "Freezer 01", tipo: "Freezer", temperatura: 2 },
-        { id: 2, nome: "Freezer 02", tipo: "Freezer", temperatura: 3 },
-        { id: 3, nome: "Freezer 03", tipo: "Freezer", temperatura: 5 },
-        { id: 4, nome: "Freezer 04", tipo: "Freezer", temperatura: -1 },
-        { id: 5, nome: "Freezer 05", tipo: "Freezer", temperatura: 6 },
+        { id: 1, nome: "Freezer 01", tipo: "Freezer" },
+        { id: 2, nome: "Freezer 02", tipo: "Freezer" },
+        { id: 3, nome: "Freezer 03", tipo: "Freezer" },
+        { id: 4, nome: "Freezer 04", tipo: "Freezer" },
+        { id: 5, nome: "Freezer 05", tipo: "Freezer" },
+        { id: 6, nome: "Freezer 06", tipo: "Freezer" },
+        { id: 7, nome: "Freezer 07", tipo: "Freezer" },
+        { id: 8, nome: "Freezer 08", tipo: "Freezer" },
+        { id: 9, nome: "Freezer 09", tipo: "Freezer" },
+        { id: 10, nome: "Freezer 10", tipo: "Freezer" },
 
-        { id: 6, nome: "Freezer 06", tipo: "Freezer", temperatura: 1 },
-        { id: 7, nome: "Freezer 07", tipo: "Freezer", temperatura: 0 },
-        { id: 8, nome: "Freezer 08", tipo: "Freezer", temperatura: 4 },
-        { id: 9, nome: "Freezer 09", tipo: "Freezer", temperatura: 7 },
-        { id: 10, nome: "Freezer 10", tipo: "Freezer", temperatura: 2 },
+        { id: 11, nome: "Câmara 11", tipo: "Câmara" },
+        { id: 12, nome: "Câmara 12", tipo: "Câmara" },
+        { id: 13, nome: "Câmara 13", tipo: "Câmara" },
+        { id: 14, nome: "Câmara 14", tipo: "Câmara" },
+        { id: 15, nome: "Câmara 15", tipo: "Câmara" },
 
-        { id: 11, nome: "Câmara 11", tipo: "Câmara", temperatura: 3 },
-        { id: 12, nome: "Câmara 12", tipo: "Câmara", temperatura: 5 },
-        { id: 13, nome: "Câmara 13", tipo: "Câmara", temperatura: 8 },
-        { id: 14, nome: "Câmara 14", tipo: "Câmara", temperatura: -2 },
-        { id: 15, nome: "Câmara 15", tipo: "Câmara", temperatura: 1 },
+        { id: 16, nome: "Câmara 16", tipo: "Câmara" },
+        { id: 17, nome: "Câmara 17", tipo: "Câmara" },
+        { id: 18, nome: "Câmara 18", tipo: "Câmara" },
+        { id: 19, nome: "Câmara 19", tipo: "Câmara" },
+        { id: 20, nome: "Câmara 20", tipo: "Câmara" },
 
-        { id: 16, nome: "Câmara 16", tipo: "Câmara", temperatura: 4 },
-        { id: 17, nome: "Câmara 17", tipo: "Câmara", temperatura: 6 },
-        { id: 18, nome: "Câmara 18", tipo: "Câmara", temperatura: 2 },
-        { id: 19, nome: "Câmara 19", tipo: "Câmara", temperatura: 0 },
-        { id: 20, nome: "Câmara 20", tipo: "Câmara", temperatura: 9 },
+        { id: 21, nome: "Caminhão 21", tipo: "Caminhão" },
+        { id: 22, nome: "Caminhão 22", tipo: "Caminhão" },
+        { id: 23, nome: "Caminhão 23", tipo: "Caminhão" },
+        { id: 24, nome: "Caminhão 24", tipo: "Caminhão" },
+        { id: 25, nome: "Caminhão 25", tipo: "Caminhão" },
+        { id: 26, nome: "Caminhão 26", tipo: "Caminhão" },
+        { id: 27, nome: "Caminhão 27", tipo: "Caminhão" },
+        { id: 28, nome: "Caminhão 28", tipo: "Caminhão" },
+        { id: 29, nome: "Caminhão 29", tipo: "Caminhão" },
+        { id: 30, nome: "Caminhão 30", tipo: "Caminhão" },
 
-        { id: 21, nome: "Caminhão 21", tipo: "Caminhão", temperatura: 3 },
-        { id: 22, nome: "Caminhão 22", tipo: "Caminhão", temperatura: 6 },
-        { id: 23, nome: "Caminhão 23", tipo: "Caminhão", temperatura: 10 },
-        { id: 24, nome: "Caminhão 24", tipo: "Caminhão", temperatura: 2 },
-        { id: 25, nome: "Caminhão 25", tipo: "Caminhão", temperatura: 4 },
-
-        { id: 26, nome: "Caminhão 26", tipo: "Caminhão", temperatura: -1 },
-        { id: 27, nome: "Caminhão 27", tipo: "Caminhão", temperatura: 5 },
-        { id: 28, nome: "Caminhão 28", tipo: "Caminhão", temperatura: 7 },
-        { id: 29, nome: "Caminhão 29", tipo: "Caminhão", temperatura: 1 },
-        { id: 30, nome: "Caminhão 30", tipo: "Caminhão", temperatura: 3 },
-
-        { id: 31, nome: "Geladeira 31", tipo: "Geladeira", temperatura: 2 },
-        { id: 32, nome: "Geladeira 32", tipo: "Geladeira", temperatura: 5 },
-        { id: 33, nome: "Geladeira 33", tipo: "Geladeira", temperatura: 12 },
-        { id: 34, nome: "Geladeira 34", tipo: "Geladeira", temperatura: 0 },
-        { id: 35, nome: "Geladeira 35", tipo: "Geladeira", temperatura: 4 },
-
-        { id: 36, nome: "Geladeira 36", tipo: "Geladeira", temperatura: -1 },
-        { id: 37, nome: "Geladeira 37", tipo: "Geladeira", temperatura: 6 },
-        { id: 38, nome: "Geladeira 38", tipo: "Geladeira", temperatura: 3 },
-        { id: 39, nome: "Geladeira 39", tipo: "Geladeira", temperatura: 8 },
-        { id: 40, nome: "Geladeira 40", tipo: "Geladeira", temperatura: 2 },
-
-        { id: 41, nome: "Freezer 41", tipo: "Freezer", temperatura: 1 },
-        { id: 42, nome: "Freezer 42", tipo: "Freezer", temperatura: 4 },
-        { id: 43, nome: "Freezer 43", tipo: "Freezer", temperatura: 6 },
-        { id: 44, nome: "Freezer 44", tipo: "Freezer", temperatura: -2 },
-        { id: 45, nome: "Freezer 45", tipo: "Freezer", temperatura: 3 },
-
-        { id: 46, nome: "Freezer 46", tipo: "Freezer", temperatura: 5 },
-        { id: 47, nome: "Freezer 47", tipo: "Freezer", temperatura: 9 },
-        { id: 48, nome: "Freezer 48", tipo: "Freezer", temperatura: 2 },
-        { id: 49, nome: "Freezer 49", tipo: "Freezer", temperatura: 0 },
-        { id: 50, nome: "Freezer 50", tipo: "Freezer", temperatura: 7 }
+        { id: 31, nome: "Geladeira 31", tipo: "Geladeira" },
+        { id: 32, nome: "Geladeira 32", tipo: "Geladeira" },
+        { id: 33, nome: "Geladeira 33", tipo: "Geladeira" },
+        { id: 34, nome: "Geladeira 34", tipo: "Geladeira" },
+        { id: 35, nome: "Geladeira 35", tipo: "Geladeira" },
+        { id: 36, nome: "Geladeira 36", tipo: "Geladeira" },
+        { id: 37, nome: "Geladeira 37", tipo: "Geladeira" },
+        { id: 38, nome: "Geladeira 38", tipo: "Geladeira" },
+        { id: 39, nome: "Geladeira 39", tipo: "Geladeira" },
+        { id: 40, nome: "Geladeira 40", tipo: "Geladeira" }
     ];
 
-    function renderizarInsights() {
-        const lista = document.getElementById("insights-list");
+    const leituras = [];
+    const alertas = [];
 
-        const insights = gerarInsights();
+    function gerarTemperatura() {
+        let r = Math.random();
 
-        lista.innerHTML = "";
+        // 80% faixa ideal
+        if (r < 0.8) {
+            return Number((Math.random() * 4).toFixed(1));
+        }
 
-        for (let i = 0; i < insights.length; i++) {
-            let div = document.createElement("div");
-            div.classList.add("insight-card");
-            div.innerText = insights[i];
-            lista.appendChild(div);
+        // 15% alerta 
+        if (r < 0.95) {
+            let alertaBaixo = Math.random() < 0.5;
+            return alertaBaixo
+                ? Number((-1 + Math.random() * 1).toFixed(1))
+                : Number((4 + Math.random() * 2).toFixed(1));
+        }
+
+        // 5% crítico 
+        return Number((6 + Math.random() * 1).toFixed(1));
+    }
+
+    function gerarLeituras() {
+        let idLeitura = 1;
+        for (let unidade of unidades) {
+            // gerar 20 leituras
+            for (let i = 0; i < 20; i++) {
+                let temperatura = gerarTemperatura();
+
+                let data = new Date();
+                data.setMinutes(data.getMinutes() - (20 - i));
+
+                leituras.push({
+                    id: idLeitura++,
+                    unidadeId: unidade.id,
+                    temperatura: temperatura,
+                    data: data
+                })
+            }
         }
     }
+
+    function gerarAlertas() {
+        let idAlerta = 1;
+        for (let leitura of leituras) {
+            if (leitura.temperatura >= 0 && leitura.temperatura <= 4) continue;
+
+            let tipo;
+            let descricao;
+
+            if ((leitura.temperatura >= -1 && leitura.temperatura < 0) || (leitura.temperatura > 4 && leitura.temperatura <= 6)) {
+                tipo = "ALERTA";
+                descricao = "Temperatura fora da faixa ideal";
+            } else {
+                tipo = "CRITICO";
+                descricao = "Temperatura crítica detectada";
+            }
+
+            alertas.push({
+                id: idAlerta++,
+                leituraId: leitura.id,
+                unidadeId: leitura.unidadeId,
+                tipo: tipo,
+                descricao: descricao,
+                temperatura: leitura.temperatura,
+                data: leitura.data
+            });
+        }
+    }
+
+    gerarLeituras();
+    gerarAlertas();
+
+    function getStatusUnidade(temp) {
+        if (temp >= 0 && temp <= 4) return "normal";
+        if ((temp >= -1 && temp < 0) || (temp > 4 && temp <= 6)) return "alerta";
+        return "critico";
+    }
+
+    function distancia(temp) {
+        if (temp >= 0 && temp <= 4) return 0;
+        if (temp < 0) return Math.abs(temp - 0);
+        return Math.abs(temp - 4);
+    }
+
+    function atualizarKpis() {
+        // KPI total alertas
+        const totalAlertas = alertas.length;
+        const kpiTotalAlertas = document.getElementById("kpiTotalAlertas");
+        const cardTotalAlertas = kpiTotalAlertas.parentElement;
+
+        kpiTotalAlertas.innerText = totalAlertas;
+
+        // remove estados antigos
+        cardTotalAlertas.classList.remove("normal", "alerta", "critico", "otimo");
+
+        // regra de cor do KPI (simples e eficiente)
+        if (totalAlertas === 0) {
+            cardTotalAlertas.classList.add("otimo");
+        } else if (totalAlertas <= 20) {
+            cardTotalAlertas.classList.add("alerta");
+        } else {
+            cardTotalAlertas.classList.add("critico");
+        }
+
+        // KPI unidades em alerta AGORA
+        let alertasAgora = 0;
+        let criticosAgora = 0;
+
+        for (let unidade of unidades) {
+            const ultimaLeitura = leituras.filter(l => l.unidadeId === unidade.id).at(-1);
+
+            if (!ultimaLeitura) continue;
+
+            const status = getStatusUnidade(ultimaLeitura.temperatura);
+
+            if (status === "alerta") alertasAgora++;
+            if (status === "critico") criticosAgora++;
+        }
+
+        const kpiAlertasAtivos = document.getElementById("kpiAlertasAtivos");
+        const cardAlertasAtivos = kpiAlertasAtivos.parentElement;
+        kpiAlertasAtivos.innerText = alertasAgora;
+
+        cardAlertasAtivos.classList.remove("normal", "alerta", "critico", "otimo");
+
+        const percentualAlertas = (alertasAgora / unidades.length) * 100;
+        if (percentualAlertas === 0) {
+            cardAlertasAtivos.classList.add("otimo");
+        } else if (percentualAlertas > 0 && percentualAlertas <= 5) {
+            cardAlertasAtivos.classList.add("normal");
+        } else if (percentualAlertas > 5 && percentualAlertas < 10) {
+            cardAlertasAtivos.classList.add("alerta");
+        } else {
+            cardAlertasAtivos.classList.add("critico");
+        }
+
+        const kpiCriticos = document.getElementById("kpiCriticosAtivos");
+        const cardCriticos = kpiCriticos.parentElement;
+
+        kpiCriticos.innerText = criticosAgora;
+
+        cardCriticos.classList.remove("normal", "alerta", "critico", "otimo");
+
+        if (criticosAgora > 0) {
+            cardCriticos.classList.add("critico");
+        } else {
+            cardCriticos.classList.add("otimo");
+        }
+
+
+        // KPI conformidade do sistema
+        const totalUnidades = unidades.length;
+        const conformes = totalUnidades - (alertasAgora + criticosAgora);
+
+        const percentualConformidade = ((conformes / totalUnidades) * 100).toFixed(0);
+
+        const kpiConformidade = document.getElementById("kpiConformidade");
+        const cardConformidade = kpiConformidade.parentElement;
+
+        kpiConformidade.innerText = percentualConformidade + "%";
+
+        cardConformidade.classList.remove("otimo", "alerta", "critico", "normal");
+
+        if (percentualConformidade >= 95) {
+            cardConformidade.classList.add("otimo");
+        } else if (percentualConformidade >= 90) {
+            cardConformidade.classList.add("normal");
+        } else if (percentualConformidade >= 70) {
+            cardConformidade.classList.add("alerta");
+        } else {
+            cardConformidade.classList.add("critico");
+        }
+
+        // KPI melhor unidade do sistema
+        let melhorUnidade = null;
+        let menorDist = 999;
+
+        for (let unidade of unidades) {
+            const ultimaLeitura = leituras.filter(l => l.unidadeId === unidade.id).at(-1);
+
+            if (!ultimaLeitura) continue;
+
+            let dist = distancia(ultimaLeitura.temperatura);
+
+            if (dist < menorDist) {
+                menorDist = dist;
+                melhorUnidade = {
+                    ...unidade,
+                    temperatura: ultimaLeitura.temperatura
+                };
+            }
+        }
+
+        const kpiMelhor = document.getElementById("kpiMelhorUnidade");
+        kpiMelhor.innerText = ` ❄️ ${melhorUnidade.nome} (${melhorUnidade.temperatura.toFixed(1)}°C)`;
+
+        const status = getStatusUnidade(melhorUnidade.temperatura);
+        kpiMelhor.classList.remove("normal", "alerta", "critico");
+        if (status === "normal") kpiMelhor.classList.add("normal");
+        if (status === "alerta") kpiMelhor.classList.add("alerta");
+        if (status === "critico") kpiMelhor.classList.add("critico");
+
+    }
+    atualizarKpis();
 
     function gerarInsights() {
         let criticos = 0;
         let alertas = 0;
         let normais = 0;
 
-        let piorUnidade = null;
-        let piorDistancia = -999;
+        let pior = null;
+        let melhor = null;
+        let maiorDist = -1;
+        let menorDist = 999;
 
-        let melhorUnidade = null;
-        let menorDistancia = 999;
+        for (let unidade of unidades) {
+            const ultimaLeitura = leituras.filter(l => l.unidadeId === unidade.id).at(-1);
+            if (!ultimaLeitura) continue;
 
-        for (let i = 0; i < unidades.length; i++) {
-            let u = unidades[i];
+            let temp = ultimaLeitura.temperatura;
+            let dist = distancia(temp);
 
-            let dist = 0;
+            let status = getStatusUnidade(temp);
 
-            if (u.temperatura >= 0 && u.temperatura <= 4) {
-                dist = 0;
-            } else if (u.temperatura < 0) {
-                dist = Math.abs(u.temperatura - 0);
-            } else {
-                dist = Math.abs(u.temperatura - 4);
+            if (status === "normal") normais++;
+            else if (status === "alerta") alertas++;
+            else if (status === "critico") criticos++;
+
+            if (dist > maiorDist) {
+                maiorDist = dist;
+                pior = { ...unidade, temp };
             }
 
-            // status
-            if (u.temperatura >= 0 && u.temperatura <= 4) {
-                normais++;
-            } else if ((u.temperatura >= -1 && u.temperatura < 0) || (u.temperatura > 4 && u.temperatura <= 6)) {
-                alertas++;
-            } else {
-                criticos++;
-            }
-
-            // pior unidade (mais fora da faixa)
-            if (dist > piorDistancia) {
-                piorDistancia = dist;
-                piorUnidade = u;
-            }
-
-            // melhor unidade (mais perto da faixa ideal)
-            if (dist < menorDistancia) {
-                menorDistancia = dist;
-                melhorUnidade = u;
+            if (dist < menorDist) {
+                menorDist = dist;
+                melhor = { ...unidade, temp };
             }
         }
 
-        // montar insights
+        const total = unidades.length;
+        const pctCriticos = (criticos / total) * 100;
+        const pctAlertas = (alertas / total) * 100;
+
         let insights = [];
 
-        // risco geral
-        if (criticos > 0) {
-            insights.push(`🔴 Sistema em risco: ${criticos} unidade(s) crítica(s)`);
-        } else if (alertas > 0) {
-            insights.push(`🟡 Sistema estável com ${alertas} unidade(s) em alerta`);
-        } else {
-            insights.push(`🟢 Sistema operando dentro da normalidade`);
+        if (pctCriticos >= 10) {
+            insights.push(`🔴 <b>SEVERO:</b> ${pctCriticos.toFixed(1)}% das unidades em estado crítico`);
+        }
+        else if (pctCriticos >= 5) {
+            insights.push(`🟠 <b>ALTO RISCO:</b> ${pctCriticos.toFixed(1)}% das unidades em estado crítico`);
+        }
+        else if (pctAlertas >= 5) {
+            insights.push(`🟡 <b>ATENÇÃO:</b> ${pctAlertas.toFixed(1)}% das unidades em alerta`);
+        }
+        else {
+            insights.push(`🟢 Sistema estável (Podemos ter algumas unidades em alerta, verificar melhor na área de unidades)`);
         }
 
-        // pior unidade
-        insights.push(`🔥 Unidade mais crítica: ${piorUnidade.nome} (${piorUnidade.temperatura.toFixed(1)}°C)`);
+        if (pior) {
+            insights.push(`🔥 <b>Maior risco:</b> ${pior.nome} (${pior.temp.toFixed(1)}°C)`);
+        }
 
-        // melhor unidade
-        insights.push(`❄️ Unidade mais estável: ${melhorUnidade.nome} (${melhorUnidade.temperatura.toFixed(1)}°C)`);
+        if (melhor) {
+            insights.push(`❄️ <b>Melhor estabilidade:</b> ${melhor.nome} (${melhor.temp.toFixed(1)}°C)`);
+        }
 
-        // resumo
         insights.push(`📊 ${normais} normais • ${alertas} alertas • ${criticos} críticos`);
 
         return insights;
     }
 
-    function atualizarGraficoPizza() {
-        const canvasPizza = document.getElementById('graficoPizza');
+    function renderizarInsights() {
+        const container = document.getElementById("insights");
+        container.innerHTML = "";
+
+        const insights = gerarInsights();
+
+        for (let i = 0; i < insights.length; i++) {
+            const card = document.createElement("div");
+            card.classList.add("insight-card");
+
+            const bar = document.createElement("div");
+            bar.classList.add("insight-bar");
+
+            const text = document.createElement("p");
+            text.innerHTML = insights[i];
+
+            card.appendChild(bar);
+            card.appendChild(text);
+
+            container.appendChild(card);
+        }
+    }
+    renderizarInsights();
+
+    function gerarRankingRisco() {
+        const canvas = document.getElementById("graficoRisco");
+
+        let dados = [];
+        for (let unidade of unidades) {
+            const ultimaLeitura = leituras.filter(l => l.unidadeId === unidade.id).at(-1);
+
+            if (!ultimaLeitura) continue;
+
+            dados.push({
+                nome: unidade.nome,
+                risco: distancia(ultimaLeitura.temperatura)
+            });
+        }
+
+        // ordena do maior risco para o menor
+        dados.sort((a, b) => b.risco - a.risco);
+
+        const labels = dados.map(d => d.nome);
+        const valores = dados.map(d => d.risco);
+
+        new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Risco (distância da faixa ideal)',
+                    data: valores,
+                    backgroundColor: valores.map(valor =>
+                        valor === 0 ? "#2ecc71" :
+                            valor <= 2 ? "#f1c40f" : "#ff3b3b"
+                    ),
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            generateLabels: function () {
+                                return [
+                                    {
+                                        text: "Normal (0)",
+                                        fillStyle: "#2ecc71"
+                                    },
+                                    {
+                                        text: "Alerta (≤ 2)",
+                                        fillStyle: "#f1c40f"
+                                    },
+                                    {
+                                        text: "Crítico (> 2)",
+                                        fillStyle: "#ff3b3b"
+                                    }
+                                ];
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    gerarRankingRisco();
+
+    function gerarDonutStatus() {
+        const canvas = document.getElementById("graficoDonut");
 
         let normal = 0;
         let alerta = 0;
         let critico = 0;
 
-        for (let i = 0; i < unidades.length; i++) {
-            let u = unidades[i];
+        for (let unidade of unidades) {
+            const ultimaLeitura = leituras.filter(l => l.unidadeId === unidade.id).at(-1);
 
-            if (u.temperatura >= 0 && u.temperatura <= 4) {
-                normal++;
-            } else if ((u.temperatura >= -1 && u.temperatura < 0) || (u.temperatura > 4 && u.temperatura <= 6)) {
-                alerta++;
-            } else {
-                critico++;
-            }
+            if (!ultimaLeitura) continue;
+
+            const temp = ultimaLeitura.temperatura;
+
+            if (temp >= 0 && temp <= 4) normal++;
+            else if ((temp >= -1 && temp < 0) || (temp > 4 && temp <= 6)) alerta++;
+            else critico++;
         }
 
-        const graficoPizza = new Chart(canvasPizza, {
+        new Chart(canvas, {
             type: 'doughnut',
             data: {
                 labels: ['Normal', 'Alerta', 'Crítico'],
                 datasets: [{
                     data: [normal, alerta, critico],
                     backgroundColor: [
-                        "#2ecc71", // verde (normal)
-                        "#f1c40f", // amarelo (alerta)
-                        "#ff3b3b"  // vermelho (critico)
+                        "#2ecc71",
+                        "#f1c40f",
+                        "#ff3b3b"
                     ],
                     borderWidth: 1
                 }]
@@ -296,163 +582,83 @@
             }
         });
     }
+    gerarDonutStatus();
 
-    function atualizarGraficoBarra() {
-        const canvasBarra = document.getElementById('graficoBarra');
-
-        let unidadesFiltradas = unidades.slice(0, 20);
+    let graficoConformidade;
+    function renderGraficoConformidade() {
+        const canvas = document.getElementById("graficoConformidadeTemporal");
 
         let labels = [];
-        let dadosTemp = [];
-        let coresBarras = [];
+        let valores = [];
 
-        for (let i = 0; i < unidadesFiltradas.length; i++) {
-            let u = unidadesFiltradas[i];
+        const leiturasOrdenadas = [...leituras].sort((a, b) => new Date(a.data) - new Date(b.data));
 
-            labels.push(`${i + 1}º - ${u.nome}`);
-            dadosTemp.push(u.temperatura);
+        for (let i = 0; i < leiturasOrdenadas.length; i++) {
 
-            if (u.temperatura >= 0 && u.temperatura <= 4) {
-                coresBarras.push("#2ecc71");
-            } else if ((u.temperatura >= -1 && u.temperatura < 0) || (u.temperatura > 4 && u.temperatura <= 6)) {
-                coresBarras.push("#f1c40f");
-            } else {
-                coresBarras.push("#ff3b3b");
+            const leituraAtual = leiturasOrdenadas[i];
+
+            let porUnidade = new Map();
+
+            // pega todas leituras até o ponto atual (simula evolução)
+            for (let j = 0; j <= i; j++) {
+                const l = leiturasOrdenadas[j];
+                porUnidade.set(l.unidadeId, l);
             }
+
+            let normais = 0;
+
+            for (let l of porUnidade.values()) {
+                if (l.temperatura >= 0 && l.temperatura <= 4) {
+                    normais++;
+                }
+            }
+
+            const conformidade = (normais / unidades.length) * 100;
+
+            labels.push(new Date(leituraAtual.data).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            }));
+            valores.push(conformidade.toFixed(1));
         }
 
-        const graficoBarra = new Chart(canvasBarra, {
-            type: 'bar',
+        graficoConformidade = new Chart(canvas, {
+            type: "line",
             data: {
-                labels: labels,
+                labels,
                 datasets: [{
-                    label: 'Temperatura (°C)',
-                    data: dadosTemp,
-                    backgroundColor: coresBarras,
-                    borderWidth: 1,
-                    categoryPercentage: 0.6,
-                    barPercentage: 0.9,
-                    borderRadius: 6
+                    label: "% Conformidade do Sistema",
+                    data: valores,
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHoverRadius: 5,
+                    segment: {
+                        borderColor: (ctx) => {
+                            const value = ctx.p1.parsed.y;
+
+                            if (value >= 95) return "#2ecc71"; // verde
+                            if (value >= 80) return "#f1c40f"; // amarelo
+                            return "#e74c3c"; // vermelho
+                        }
+                    }
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                indexAxis: 'y',
-                scales: {
-                    y: {
-                        ticks: {
-                            autoSkip: false
-                        }
-                    }
+                layout: {
+                    padding: 0
                 },
                 plugins: {
                     legend: {
-                        display: true,
-                        labels: {
-                            generateLabels: () => [
-                                { text: 'Normal (0-4°C)', fillStyle: '#2ecc71' },
-                                { text: 'Alerta (-1 - 6°C)', fillStyle: '#f1c40f' },
-                                { text: 'Crítico (mais que 6°C OU menos que -1°C)', fillStyle: '#ff3b3b' }
-                            ]
-                        }
+                        display: false
                     }
                 }
             }
         });
     }
-
-    function atualizarKpis() {
-        let soma = 0;
-        let alertas = 0;
-        let dentro_da_faixa = 0;
-
-        for (let i = 0; i < unidades.length; i++) {
-
-            // // simula variação de temperatura
-            // unidades[i].temp += (Math.random() * 2 - 1);
-
-            soma += unidades[i].temperatura;
-
-            if (unidades[i].temperatura < 0 || unidades[i].temperatura > 4) {
-                alertas++;
-            } else {
-                dentro_da_faixa++;
-            }
-        }
-
-        let media = (soma / unidades.length).toFixed(1);
-        let percentual = ((dentro_da_faixa / unidades.length) * 100).toFixed(0);
-
-        // mudar cores dos kpis de acordo com valor
-
-        // temp media
-        const kpiTemp = document.getElementById("kpiTemp");
-        const cardTemp = kpiTemp.parentElement;
-
-        kpiTemp.innerText = media + " °C";
-
-        // limpa todos os estilos
-        kpiTemp.classList.remove("kpi-normal", "kpi-alerta", "kpi-critico");
-        cardTemp.classList.remove("normal", "alerta", "critico");
-
-        if (media >= 0 && media <= 4) {
-            kpiTemp.classList.add("kpi-normal");
-            cardTemp.classList.add("normal");
-        } else if ((media >= -1 && media < 0) || (media > 4 && media <= 6)) {
-            kpiTemp.classList.add("kpi-alerta");
-            cardTemp.classList.add("alerta");
-
-        } else {
-            kpiTemp.classList.add("kpi-critico");
-            cardTemp.classList.add("critico");
-        }
-
-        //alertas
-        const kpiAlertas = document.getElementById("kpiAlertas");
-        const cardAlertas = kpiAlertas.parentElement;
-
-        kpiAlertas.innerText = alertas;
-
-        kpiAlertas.classList.remove("kpi-normal", "kpi-alerta", "kpi-critico");
-        cardAlertas.classList.remove("normal", "alerta", "critico");
-
-        if (alertas === 0) {
-            kpiAlertas.classList.add("kpi-normal");
-            cardAlertas.classList.add("normal");
-
-        } else if (alertas <= 2) {
-            kpiAlertas.classList.add("kpi-alerta");
-            cardAlertas.classList.add("alerta");
-
-        } else {
-            kpiAlertas.classList.add("kpi-critico");
-            cardAlertas.classList.add("critico");
-        }
-
-        const kpiPercentual = document.getElementById("kpiPercentual");
-        const cardPercentual = kpiPercentual.parentElement;
-
-        kpiPercentual.innerText = percentual + "%";
-
-        kpiPercentual.classList.remove("kpi-normal", "kpi-alerta", "kpi-critico");
-        cardPercentual.classList.remove("normal", "alerta", "critico");
-
-        if (percentual >= 90) {
-            kpiPercentual.classList.add("kpi-normal");
-            cardPercentual.classList.add("normal");
-
-        } else if (percentual >= 70) {
-            kpiPercentual.classList.add("kpi-alerta");
-            cardPercentual.classList.add("alerta");
-
-        } else {
-            kpiPercentual.classList.add("kpi-critico");
-            cardPercentual.classList.add("critico");
-        }
-
-        document.getElementById("kpiUnidades").innerText = unidades.length;
-    }
+    renderGraficoConformidade();
 
     function trocarTela(id) {
         const telas = document.querySelectorAll('.tela');
@@ -461,12 +667,7 @@
         }
         document.getElementById(id).classList.add('ativa');
     }
-
     trocarTela('dashboard');
-    atualizarKpis();
-    atualizarGraficoBarra();
-    atualizarGraficoPizza();
-    renderizarInsights();
 </script>
 
 </html>
