@@ -47,7 +47,6 @@
 
         <div id="dashboard" class="tela">
 
-            <!-- KPIs -->
             <div class="kpis">
                 <div class="kpi-card">
                     <div class="kpi-bar"></div>
@@ -74,6 +73,24 @@
                 </div>
             </div>
 
+            <div class="graficos">
+
+                <div class="grafico-card">
+                    <h3>Temperatura em Tempo Real (20 unidades com maior distância da faixa ideal)</h3>
+                    <div class="grafico-container">
+                        <canvas id="graficoBarra"></canvas>
+                    </div>
+                </div>
+
+                <div class="grafico-card">
+                    <h3>Status das Unidades</h3>
+                    <div class="grafico-container">
+                        <canvas id="graficoPizza"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
         <div id="unidades" class="tela">
@@ -86,16 +103,172 @@
 
     </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const unidades = [
         { nome: "Freezer 01", tipo: "Freezer", temp: 2 },
-        { nome: "Câmara Fria 02", tipo: "Câmara", temp: 5 },
-        { nome: "Caminhão 03", tipo: "Caminhão", temp: 14 },
-        { nome: "Geladeira 04", tipo: "Geladeira", temp: -1 },
-        { nome: "Freezer 05", tipo: "Freezer", temp: 3 }
+        { nome: "Freezer 02", tipo: "Freezer", temp: 3 },
+        { nome: "Freezer 03", tipo: "Freezer", temp: 5 },
+        { nome: "Freezer 04", tipo: "Freezer", temp: -1 },
+        { nome: "Freezer 05", tipo: "Freezer", temp: 6 },
+        { nome: "Freezer 06", tipo: "Freezer", temp: 1 },
+        { nome: "Freezer 07", tipo: "Freezer", temp: 0 },
+        { nome: "Freezer 08", tipo: "Freezer", temp: 4 },
+        { nome: "Freezer 09", tipo: "Freezer", temp: 7 },
+        { nome: "Freezer 10", tipo: "Freezer", temp: 2 },
+
+        { nome: "Câmara 11", tipo: "Câmara", temp: 3 },
+        { nome: "Câmara 12", tipo: "Câmara", temp: 5 },
+        { nome: "Câmara 13", tipo: "Câmara", temp: 8 },
+        { nome: "Câmara 14", tipo: "Câmara", temp: -2 },
+        { nome: "Câmara 15", tipo: "Câmara", temp: 1 },
+        { nome: "Câmara 16", tipo: "Câmara", temp: 4 },
+        { nome: "Câmara 17", tipo: "Câmara", temp: 6 },
+        { nome: "Câmara 18", tipo: "Câmara", temp: 2 },
+        { nome: "Câmara 19", tipo: "Câmara", temp: 0 },
+        { nome: "Câmara 20", tipo: "Câmara", temp: 9 },
+
+        { nome: "Caminhão 21", tipo: "Caminhão", temp: 3 },
+        { nome: "Caminhão 22", tipo: "Caminhão", temp: 6 },
+        { nome: "Caminhão 23", tipo: "Caminhão", temp: 10 },
+        { nome: "Caminhão 24", tipo: "Caminhão", temp: 2 },
+        { nome: "Caminhão 25", tipo: "Caminhão", temp: 4 },
+        { nome: "Caminhão 26", tipo: "Caminhão", temp: -1 },
+        { nome: "Caminhão 27", tipo: "Caminhão", temp: 5 },
+        { nome: "Caminhão 28", tipo: "Caminhão", temp: 7 },
+        { nome: "Caminhão 29", tipo: "Caminhão", temp: 1 },
+        { nome: "Caminhão 30", tipo: "Caminhão", temp: 3 },
+
+        { nome: "Geladeira 31", tipo: "Geladeira", temp: 2 },
+        { nome: "Geladeira 32", tipo: "Geladeira", temp: 5 },
+        { nome: "Geladeira 33", tipo: "Geladeira", temp: 12 },
+        { nome: "Geladeira 34", tipo: "Geladeira", temp: 0 },
+        { nome: "Geladeira 35", tipo: "Geladeira", temp: 4 },
+        { nome: "Geladeira 36", tipo: "Geladeira", temp: -1 },
+        { nome: "Geladeira 37", tipo: "Geladeira", temp: 6 },
+        { nome: "Geladeira 38", tipo: "Geladeira", temp: 3 },
+        { nome: "Geladeira 39", tipo: "Geladeira", temp: 8 },
+        { nome: "Geladeira 40", tipo: "Geladeira", temp: 2 },
+
+        { nome: "Freezer 41", tipo: "Freezer", temp: 1 },
+        { nome: "Freezer 42", tipo: "Freezer", temp: 4 },
+        { nome: "Freezer 43", tipo: "Freezer", temp: 6 },
+        { nome: "Freezer 44", tipo: "Freezer", temp: -2 },
+        { nome: "Freezer 45", tipo: "Freezer", temp: 3 },
+        { nome: "Freezer 46", tipo: "Freezer", temp: 5 },
+        { nome: "Freezer 47", tipo: "Freezer", temp: 9 },
+        { nome: "Freezer 48", tipo: "Freezer", temp: 2 },
+        { nome: "Freezer 49", tipo: "Freezer", temp: 0 },
+        { nome: "Freezer 50", tipo: "Freezer", temp: 7 }
     ];
 
-    function atualizarDados() {
+
+    function atualizarGraficoPizza() {
+        const canvasPizza = document.getElementById('graficoPizza');
+
+        let normal = 0;
+        let alerta = 0;
+        let critico = 0;
+
+        for (let i = 0; i < unidades.length; i++) {
+            let u = unidades[i];
+
+            if (u.temp >= 0 && u.temp <= 4) {
+                normal++;
+            } else if ((u.temp >= -1 && u.temp < 0) || (u.temp > 4 && u.temp <= 6)) {
+                alerta++;
+            } else {
+                critico++;
+            }
+        }
+
+        const graficoPizza = new Chart(canvasPizza, {
+            type: 'doughnut',
+            data: {
+                labels: ['Normal', 'Alerta', 'Crítico'],
+                datasets: [{
+                    data: [normal, alerta, critico],
+                    backgroundColor: [
+                        "#2ecc71", // verde (normal)
+                        "#f1c40f", // amarelo (alerta)
+                        "#ff3b3b"  // vermelho (critico)
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    }
+
+
+    function atualizarGraficoBarra() {
+        const canvasBarra = document.getElementById('graficoBarra');
+
+        let unidadesOrdenadas = [...unidades];
+        unidadesOrdenadas.sort((a, b) => {
+            function distancia(temp) {
+                if (temp < 0) return Math.abs(temp - 0);
+                if (temp > 4) return Math.abs(temp - 4);
+                return 0;
+            }
+
+            return distancia(b.temp) - distancia(a.temp);
+        });
+        let unidadesFiltradas = unidadesOrdenadas.slice(0, 20);
+
+        let labels = [];
+        let dadosTemp = [];
+        let coresBarras = [];
+
+        for (let i = 0; i < unidadesFiltradas.length; i++) {
+            let u = unidadesFiltradas[i];
+
+            labels.push(`${i + 1}º - ${u.nome}`);
+            dadosTemp.push(u.temp);
+
+            if (u.temp >= 0 && u.temp <= 4) {
+                coresBarras.push("#2ecc71");
+            } else if ((u.temp >= -1 && u.temp < 0) || (u.temp > 4 && u.temp <= 6)) {
+                coresBarras.push("#f1c40f");
+            } else {
+                coresBarras.push("#ff3b3b");
+            }
+        }
+
+        const graficoBarra = new Chart(canvasBarra, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Temperatura (°C)',
+                    data: dadosTemp,
+                    backgroundColor: coresBarras,
+                    borderWidth: 1,
+                    categoryPercentage: 0.6,
+                    barPercentage: 0.9,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        ticks: {
+                            autoSkip: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function atualizarKpis() {
         let soma = 0;
         let alertas = 0;
         let dentro_da_faixa = 0;
@@ -196,8 +369,9 @@
     }
 
     trocarTela('dashboard');
-    atualizarDados();
-
+    atualizarKpis();
+    atualizarGraficoBarra();
+    atualizarGraficoPizza();
 </script>
 
 </html>
