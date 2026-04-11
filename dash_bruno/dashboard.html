@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="sidebar">
+
+        <div class="logo">
+            <a href="../index.html" class="logo-link">
+                <div class="logo-row">
+                    <img class="logo-icon" src="./iconlogo.png" alt="Logo">
+                    <div class="logo-text">
+                        <span class="blue">FRIGO</span><span class="red">LOG</span>
+                    </div>
+                </div>
+            </a>
+
+            <div class="logo-badge">
+                CONTROLE TÉRMICO DE PONTA A PONTA
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="trocarTela('dashboard')">
+            <span class="icon">📊</span>
+            <span class="text">Dashboard</span>
+        </div>
+
+        <div class="menu-item" onclick="trocarTela('unidades')">
+            <span class="icon">❄️</span>
+            <span class="text">Unidades</span>
+        </div>
+
+        <div class="menu-item" onclick="trocarTela('historico')">
+            <span class="icon">📈</span>
+            <span class="text">Histórico</span>
+        </div>
+
+    </div>
+
+    <div class="conteudo">
+
+        <div id="dashboard" class="tela">
+            <h1>Dashboard</h1>
+        </div>
+
+        <div id="unidades" class="tela">
+            <h1>Unidades</h1>
+        </div>
+
+        <div id="historico" class="tela">
+            <h1>Histórico</h1>
+        </div>
+
+    </div>
+</body>
+<script>
+    trocarTela('dashboard');
+
+    function trocarTela(id) {
+        const telas = document.querySelectorAll('.tela');
+        for (let i = 0; i < telas.length; i++) {
+            telas[i].classList.remove('ativa');
+        }
+        document.getElementById(id).classList.add('ativa');
+    }
+</script>
+
+</html>
