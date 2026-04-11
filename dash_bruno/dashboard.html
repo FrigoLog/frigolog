@@ -208,17 +208,7 @@
     function atualizarGraficoBarra() {
         const canvasBarra = document.getElementById('graficoBarra');
 
-        let unidadesOrdenadas = [...unidades];
-        unidadesOrdenadas.sort((a, b) => {
-            function distancia(temp) {
-                if (temp < 0) return Math.abs(temp - 0);
-                if (temp > 4) return Math.abs(temp - 4);
-                return 0;
-            }
-
-            return distancia(b.temp) - distancia(a.temp);
-        });
-        let unidadesFiltradas = unidadesOrdenadas.slice(0, 20);
+        let unidadesFiltradas = unidades.slice(0, 20);
 
         let labels = [];
         let dadosTemp = [];
