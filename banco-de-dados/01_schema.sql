@@ -23,15 +23,15 @@ CREATE TABLE usuario (
     CONSTRAINT ctFkTipoUsuario FOREIGN KEY (fk_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario)
 );
 
-CREATE TABLE tipo_locais (
-	id_tipo_locais INT PRIMARY KEY AUTO_INCREMENT,
-    tipo VARCHAR(45)
-);
-
 CREATE TABLE endereco (
 	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
     cep CHAR(8),
     numero VARCHAR(10)
+);
+
+CREATE TABLE tipo_ambiente (
+	id_tipo_ambiente INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(45)
 );
 
 CREATE TABLE ambiente_terceiros (
@@ -51,14 +51,19 @@ CREATE TABLE configuracao_unidade (
     temp_max FLOAT
 );
 
+CREATE TABLE tipo_unidade (
+	id_tipo_unidade INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(45)
+);
+
 CREATE TABLE unidade (
 	id_unidade INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
     fk_tipo_unidade INT,
     fk_ambiente INT,
-	fk_unidade INT,
+	fk_config_unidade INT,
     CONSTRAINT ctFkConfigUnidade FOREIGN KEY (fk_config_unidade) REFERENCES configuracao_unidade (id_configuracao),
-    CONSTRAINT ctUnidadeTipo FOREIGN KEY (fk_tipo_unidade) REFERENCES tipo_ambiente (id_tipo_ambiente),
+    CONSTRAINT ctUnidadeTipo FOREIGN KEY (fk_tipo_unidade) REFERENCES tipo_unidade (id_tipo_unidade),
     CONSTRAINT ctUnidadeAmbiente FOREIGN KEY (fk_ambiente) REFERENCES ambiente_terceiros (id_ambiente)
 );
 
@@ -75,4 +80,15 @@ CREATE TABLE leitura (
     data_hora DATETIME,
     fk_sensor INT,
     CONSTRAINT fkLeituraSensor FOREIGN KEY (fk_sensor) REFERENCES sensor (id_sensor)
+);
+
+CREATE TABLE alerta (
+    id_alerta INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(20), -- 'CRITICO' | 'ALERTA'
+    descricao VARCHAR(80),
+	fk_unidade INT,
+    fk_leitura INT UNIQUE,
+    CONSTRAINT ctFkAlertaUnidade FOREIGN KEY (fk_unidade) REFERENCES unidade(id_unidade),
+    CONSTRAINT ctFkAlertaLeitura FOREIGN KEY (fk_leitura) REFERENCES leitura(id_leitura),
+    CONSTRAINT ctChkTipoAlerta CHECK (tipo IN('ALERTA', 'CRITICO')) 
 );
