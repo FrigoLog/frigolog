@@ -30,7 +30,7 @@ a {
 .cabecalho {
     width: 100%;
     border-bottom: 1px solid #d9d9d9;
-    background-color: #dbe2ff;
+    background-color: #91a7ff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -128,15 +128,11 @@ a {
 /* FUNDO (imagem + overlay) */
 .imagem-fundo {
     background: linear-gradient(rgba(248, 248, 248, 0.5), rgba(201, 198, 198, 0.5)),
-                url('./assets/img/imagemfundo2.png');
-
+                url('./assets/img/imagemfundo3.png');
     width: 100%;
     padding: 60px 0;
-
     display: flex;
     justify-content: center;
-
-    /* 🔥 ESSENCIAL */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -158,7 +154,7 @@ a {
 
 /* IMAGEM */
 .hero-imagem {
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: center;
 }
@@ -168,6 +164,7 @@ a {
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
     display: block;
+  margin: 0 auto;
 }
 
 .title-logo {
@@ -218,9 +215,9 @@ a {
 }
 
 .area_texto {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    justify-content: center;
 }
 
 .titulo {
@@ -293,7 +290,7 @@ a {
 
 /* ── FOOTER ── */
 .footer {
-    background: #dbe2ff;
+    background: #91a7ff;
     color: black;
     padding: 60px 40px 20px;
 }
