@@ -58,30 +58,39 @@
             <div>
                 <p class="titulo_caixa_texto">Perda por carga com problema</p>
                 <div class="input-box">
-                    <input type="number" id="ipt_perda" placeholder="Ex: 15" min="0" max="100" />
+                    <input type="number" disabled id="ipt_perda" value="100" />
                     <span class="icone-direita">%</span>
                 </div>
-                <p class="dica">Carga de R$10.000 com 10% de perda = R$1.000 de prejuízo</p>
-            </div>
-
-            <div class="label">Armazenamento</div>
-
-            <div>
-                <p class="titulo_caixa_texto">Estoque médio (R$)</p>
-                <div class="input-box">
-                    <span class="icone-esquerda">R$</span>
-                    <input type="number" id="ipt_estoque" placeholder="Ex: 500000" min="0" />
-                </div>
+                <p class="dica">Assumindo que uma carga perdida significa que todos os produtos da mesma foram perdidos
+                </p>
             </div>
 
             <div>
-                <p class="titulo_caixa_texto">% de perdas adicionais</p>
+                <p class="titulo_caixa_texto">Adicionar estoque no cálculo</p>
                 <div class="input-box">
-                    <input type="number" id="ipt_umidade" placeholder="Ex: 1.5" min="0" max="100" step="0.1" />
-                    <span class="icone-direita">%</span>
+                    <input type="checkbox" onchange="habilitar_estoque()" id="check_estoque">
                 </div>
             </div>
+    <br>
+            <div style="display: none;" id="div_armazenamento">
+                <div class="label">Armazenamento</div>
 
+                <div>
+                    <p class="titulo_caixa_texto">Estoque médio (R$)</p>
+                    <div class="input-box">
+                        <span class="icone-esquerda">R$</span>
+                        <input type="number" id="ipt_estoque" placeholder="Ex: 500000" min="0" />
+                    </div>
+                </div>
+
+                <div>
+                    <p class="titulo_caixa_texto">% de perdas adicionais</p>
+                    <div class="input-box">
+                        <input type="number" id="ipt_umidade" placeholder="Ex: 1.5" min="0" max="100" step="0.1" />
+                        <span class="icone-direita">%</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <button type="button" class="btn-calcular" onclick="calcular()">Calcular Impacto Total</button>
@@ -104,7 +113,7 @@
             let cargasMes = Number(ipt_cargas.value);
             let valorCarga = Number(ipt_valor.value);
             let percProblema = Number(ipt_problema.value);
-            let percPerda = Number(ipt_perda.value);
+            let percPerda = 100;
 
             let totalCargas = cargasMes * periodo;
             let faturamentoTransporte = totalCargas * valorCarga;
@@ -204,7 +213,18 @@
             document.querySelectorAll('.button-periodo button').forEach(b => b.classList.remove('ativo'));
             btn.classList.add('ativo');
         }
+
+        function habilitar_estoque(){
+            let exibir_estoque = check_estoque.checked;
+
+            if(exibir_estoque){
+                div_armazenamento.style.display = "block";
+            }else{
+                div_armazenamento.style.display = "none";
+            }
+        }
     </script>
 
 </body>
+
 </html>
