@@ -10,75 +10,86 @@
     <title>Login</title>
 </head>
 
-
 <body>
-
     <main class="container">
+        <div class="logo">
+            <a href="../index.html">
+                <div class="logo-row">
+                    <img class="icon" src="../assets/img/iconlogo.png" alt="Logo">
+                    <span class="white">FRIGO</span><span class="red">LOG</span>
+                </div>
+            </a>
 
-        <form>
+            <span class="input-controle" id="alerta_msg">◉ CONTROLE TÉRMICO DE PONTA A PONTA</span>
+        </div>
 
-            <div class="logo">
-                <a href="../index.html">
-                    <div class="logo-row">
-                        <img class="icon" src="../assets/img/iconlogo.png" alt="Logo">
-                        <span class="white">FRIGO</span><span class="red">LOG</span>
-                    </div>
-                </a>
-
-                <input class="input-controle" placeholder="  ◉ CONTROLE TÉRMICO DE PONTA A PONTA"></input>
-            </div>
-
-            <div class="input-box">
-                <i class="bx bx-envelope icone-esquerda"></i>
-                <input placeholder="exemplo@frigolog.com" type="email">
+        <div class="input-box">
+            <i class="bx bx-envelope icone-esquerda"></i>
+            <input placeholder="exemplo@frigolog.com" type="email" id="ipt_email">
             <i class="bx bxs-user"></i>
-            </div>
+        </div>
 
-            <div class="input-box">
-                <i class="bx bx-lock-alt icone-esquerda"></i>
-                <input placeholder="Senha" type="password" id="senha">
-                <i class="bx bx-hide icone-direita" id="olho" onclick="toggleSenha()" style="cursor:pointer"></i>
-            </div>
+        <div class="input-box">
+            <i class="bx bx-lock-alt icone-esquerda"></i>
+            <input placeholder="Senha" type="password" id="ipt_senha">
+            <i class="bx bx-hide icone-direita" id="olho" onclick="toggleSenha()" style="cursor:pointer"></i>
+        </div>
 
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox">
-                    Lembrar senha
-                </label>
-                <a href="#">Esqueci a senha</a> <!-- colocar o link depois -->
+        <div class="remember-forgot">
+            <label>
+                <input type="checkbox">
+                Lembrar senha
+            </label>
+            <a href="#">Esqueci a senha</a>
 
-            </div>
+        </div>
 
-            <button type="submit" class="login">Login</button>
+        <button onclick="logar()" class="login">Login</button>
 
-            <div class="register-link">
-                <p>Não tem uma conta? <a href="./paginaCadastro.html">Cadastre-se</a></p>
-
-            </div>
-
-
-        </form>
-
+        <div class="register-link">
+            <p>Não tem uma conta? <a href="./paginaCadastro.html">Cadastre-se</a></p>
+        </div>
     </main>
+</body>
 
+<script>
+    let usuarios_email = ["bruno@frigolog.com", "matheus@frigolog.com"]
+    let usuarios_senha = ["bruno@123", "matheus@123"]
 
-    <script>
-        function toggleSenha() {
-            const input = document.getElementById('senha');
-            const olho = document.getElementById('olho');
+    function logar() {
+        let email_digitado = ipt_email.value;
+        let senha_digitada = ipt_senha.value;
 
-            if (input.type === 'password') {
-                input.type = 'text';
-                olho.className = 'bx bx-show icone-direita';
-            } else {
-                input.type = 'password';
-                olho.className = 'bx bx-hide icone-direita';
+        let usuarioExiste = false;
+        let usuarioIndex = -1;
+
+        for (let i = 0; i < usuarios_email.length; i++) {
+            if (usuarios_email[i] == email_digitado) {
+                usuarioExiste = true;
+                usuarioIndex = i;
+                break;
             }
         }
 
-    </script>
+        if (usuarioExiste && usuarios_senha[usuarioIndex] == senha_digitada) {
+            window.location.href = "./dashboard/dashboard.html";
+        } else {
+            alerta_msg.innerHTML = "Email ou senha inválida!";
+        }
+    }
 
-</body>
+    function toggleSenha() {
+        const input = document.getElementById('senha');
+        const olho = document.getElementById('olho');
 
+        if (input.type === 'password') {
+            input.type = 'text';
+            olho.className = 'bx bx-show icone-direita';
+        } else {
+            input.type = 'password';
+            olho.className = 'bx bx-hide icone-direita';
+        }
+    }
 
+</script>
 </html>

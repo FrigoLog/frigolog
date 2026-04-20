@@ -370,7 +370,7 @@
         }
 
         const kpiMelhor = document.getElementById("kpiMelhorUnidade");
-        kpiMelhor.innerText = ` ❄️ ${melhorUnidade.nome} (${melhorUnidade.temperatura.toFixed(1)}°C)`;
+        kpiMelhor.innerText = `${melhorUnidade.nome} (${melhorUnidade.temperatura.toFixed(1)}°C)`;
 
         const status = getStatusUnidade(melhorUnidade.temperatura);
         kpiMelhor.classList.remove("normal", "alerta", "critico");
@@ -422,27 +422,27 @@
         let insights = [];
 
         if (pctCriticos >= 10) {
-            insights.push(`🔴 <b>SEVERO:</b> ${pctCriticos.toFixed(1)}% das unidades em estado crítico`);
+            insights.push(`<b>SEVERO:</b> ${pctCriticos.toFixed(1)}% das unidades em estado crítico`);
         }
         else if (pctCriticos >= 5) {
-            insights.push(`🟠 <b>ALTO RISCO:</b> ${pctCriticos.toFixed(1)}% das unidades em estado crítico`);
+            insights.push(`<b>ALTO RISCO:</b> ${pctCriticos.toFixed(1)}% das unidades em estado crítico`);
         }
         else if (pctAlertas >= 5) {
-            insights.push(`🟡 <b>ATENÇÃO:</b> ${pctAlertas.toFixed(1)}% das unidades em alerta`);
+            insights.push(`<b>ATENÇÃO:</b> ${pctAlertas.toFixed(1)}% das unidades em alerta`);
         }
         else {
-            insights.push(`🟢 Sistema estável (Podemos ter algumas unidades em alerta, verificar melhor na área de unidades)`);
+            insights.push(`Sistema estável (Podemos ter algumas unidades em alerta, verificar melhor na área de unidades)`);
         }
 
         if (pior) {
-            insights.push(`🔥 <b>Maior risco:</b> ${pior.nome} (${pior.temp.toFixed(1)}°C)`);
+            insights.push(`<b>Maior risco:</b> ${pior.nome} (${pior.temp.toFixed(1)}°C)`);
         }
 
         if (melhor) {
-            insights.push(`❄️ <b>Melhor estabilidade:</b> ${melhor.nome} (${melhor.temp.toFixed(1)}°C)`);
+            insights.push(`<b>Melhor estabilidade:</b> ${melhor.nome} (${melhor.temp.toFixed(1)}°C)`);
         }
 
-        insights.push(`📊 ${normais} normais • ${alertas} alertas • ${criticos} críticos`);
+        insights.push(`${normais} normais • ${alertas} alertas • ${criticos} críticos`);
 
         return insights;
     }

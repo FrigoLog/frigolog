@@ -95,13 +95,10 @@ body {
     border: 2px solid #f7baba;
     border-radius: 40px;
     font-size: 10px;
-
-}
-
-.logo .input-controle::placeholder {
     color: red;
     position: center;
 }
+
 
 .input-box {
     position: relative;
