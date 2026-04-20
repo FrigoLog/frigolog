@@ -8,15 +8,15 @@ CREATE TABLE tipo_usuario (
 
 CREATE TABLE empresa (
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(45),
-	cnpj CHAR(14)
+	razao_social VARCHAR(120),
+	cnpj CHAR(14) UNIQUE
 );
 
 CREATE TABLE usuario (
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
-    senha VARCHAR(50),
-    email VARCHAR(80),
+    senha VARCHAR(255),
+    email VARCHAR(80) UNIQUE,
     fk_tipo_usuario INT,
     fk_empresa INT,
     CONSTRAINT ctFkUsuarioEmpresa FOREIGN KEY (fk_empresa) REFERENCES empresa(id_empresa),
@@ -34,61 +34,61 @@ CREATE TABLE tipo_ambiente (
     tipo VARCHAR(45)
 );
 
-CREATE TABLE ambiente_terceiros (
+CREATE TABLE ambiente_externo (
 	id_ambiente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
     fk_empresa INT,
     fk_tipo_ambiente INT,
-	fk_endereco INT UNIQUE,
+	fk_endereco INT,
     CONSTRAINT ctFkEnderecoAmbiente FOREIGN KEY (fk_endereco) REFERENCES endereco (id_endereco),
     CONSTRAINT ctFkAmbienteEmpresa FOREIGN KEY (fk_empresa) REFERENCES empresa (id_empresa),
     CONSTRAINT ctFkAmbienteTipo FOREIGN KEY (fk_tipo_ambiente) REFERENCES tipo_ambiente (id_tipo_ambiente)
 );
 
-CREATE TABLE configuracao_unidade (
+CREATE TABLE configuracao_ponto_operacional (
 	id_configuracao INT PRIMARY KEY AUTO_INCREMENT,
     temp_min FLOAT,
     temp_max FLOAT
 );
 
-CREATE TABLE tipo_unidade (
-	id_tipo_unidade INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE tipo_ponto_operacional (
+	id_tipo_po INT PRIMARY KEY AUTO_INCREMENT,
     tipo VARCHAR(45)
 );
 
-CREATE TABLE unidade (
-	id_unidade INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE ponto_operacional (
+	id_ponto_operacional INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
-    fk_tipo_unidade INT,
+    fk_tipo_po INT,
     fk_ambiente INT,
-	fk_config_unidade INT,
-    CONSTRAINT ctFkConfigUnidade FOREIGN KEY (fk_config_unidade) REFERENCES configuracao_unidade (id_configuracao),
-    CONSTRAINT ctUnidadeTipo FOREIGN KEY (fk_tipo_unidade) REFERENCES tipo_unidade (id_tipo_unidade),
-    CONSTRAINT ctUnidadeAmbiente FOREIGN KEY (fk_ambiente) REFERENCES ambiente_terceiros (id_ambiente)
+	fk_configuracao_po INT,
+    CONSTRAINT ctFkConfigPO FOREIGN KEY (fk_configuracao_po) REFERENCES configuracao_ponto_operacional (id_configuracao),
+    CONSTRAINT ctFkTipoPO FOREIGN KEY (fk_tipo_po) REFERENCES tipo_ponto_operacional (id_tipo_po),
+    CONSTRAINT ctFkAmbienteExterno FOREIGN KEY (fk_ambiente) REFERENCES ambiente_externo (id_ambiente)
 );
 
 CREATE TABLE sensor (
 	id_sensor INT PRIMARY KEY AUTO_INCREMENT,
     identificador VARCHAR(30),
-    fk_unidade INT,
-    CONSTRAINT ctFkSensorUnidade FOREIGN KEY (fk_unidade) REFERENCES unidade (id_unidade)
+    fk_po INT,
+    CONSTRAINT ctFkSensorPO FOREIGN KEY (fk_po) REFERENCES ponto_operacional (id_ponto_operacional)
 );
 
 CREATE TABLE leitura (
 	id_leitura INT PRIMARY KEY AUTO_INCREMENT,
     temperatura FLOAT,
-    data_hora DATETIME,
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
     fk_sensor INT,
     CONSTRAINT fkLeituraSensor FOREIGN KEY (fk_sensor) REFERENCES sensor (id_sensor)
 );
 
 CREATE TABLE alerta (
     id_alerta INT PRIMARY KEY AUTO_INCREMENT,
-    tipo VARCHAR(20), -- 'CRITICO' | 'ALERTA'
+    tipo VARCHAR(20),
     descricao VARCHAR(80),
-	fk_unidade INT,
+	fk_po INT,
     fk_leitura INT UNIQUE,
-    CONSTRAINT ctFkAlertaUnidade FOREIGN KEY (fk_unidade) REFERENCES unidade(id_unidade),
+    CONSTRAINT ctFkPO FOREIGN KEY (fk_po) REFERENCES ponto_operacional(id_ponto_operacional),
     CONSTRAINT ctFkAlertaLeitura FOREIGN KEY (fk_leitura) REFERENCES leitura(id_leitura),
     CONSTRAINT ctChkTipoAlerta CHECK (tipo IN('ALERTA', 'CRITICO')) 
 );
