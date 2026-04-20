@@ -41,11 +41,11 @@ INSERT INTO tipo_ponto_operacional (tipo) VALUES
 ('Freezer');
 
 INSERT INTO ponto_operacional (nome, fk_tipo_po, fk_ambiente, fk_configuracao_po) VALUES
-('Geladeira Hortifruti', 1, 1, 1),
+('Geladeira Açougue', 1, 1, 1),
 ('Freezer Açougue', 4, 1, 2),
 ('Baú Caminhão 7821', 3, 2, 3),
 ('Câmara Principal', 2, 3, 2),
-('Geladeira Laticínios', 1, 4, 4);
+('Geladeira Estoque', 1, 4, 4);
 
 INSERT INTO sensor (identificador, fk_po) VALUES
 ('TEMP-A01', 1),
