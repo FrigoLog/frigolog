@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frigolog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-row">
+                <img src="./assets/img/iconlogo.png" alt="Logo FrigoLog">
+                <span class="title-logo">
+                    <span class="white">FRIGO</span><span class="red">LOG</span>
+                </span>
+            </div>
+
+            <nav>
+                <a href="index.html" class="underline-animation">Home</a>
+                <a href="#sobre" class="underline-animation">Sobre nós</a>
+                <a href="#simulador" class="underline-animation">Simulador Financeiro</a>
+            </nav>
+
+            <div class="acoes">
+                <a class="btn btn-azul" href="./pages/paginaCadastro.html">
+                    Ser cliente
+                </a>
+                <a class="btn btn-branco" href="./pages/login.html">
+                    Já sou cliente
+                </a>
+            </div>
+        </header>
+
+        <div class="hero" id="hero">
+            <div class="hero-texto">
+                <h1>
+                    Garantindo a Qualidade das Carnes Vermelhas Da
+                    <span class="red">Produção ao Mercado Brasileiro</span>
+                </h1>
+
+                <p>
+                    Nossa solução de monitoramento de ponta a ponta oferece
+                    visibilidade em tempo real para indústrias das carnes vermelhas,
+                    garantindo a qualidade dos produtos e assegurando conformidade
+                    com as normas regulatórias do mercado.
+                </p>
+            </div>
+
+            <div class="hero-img">
+                <img src="./assets/img/22066 1.png" alt="">
+            </div>
+        </div>
+
+        <div class="sobre" id="sobre">
+            <div class="cards-sobre">
+                <div class="card">
+                    <h3 class="titulo-card">SOBRE NÓS</h3>
+                    <p>
+                        Somos uma empresa especializada em monitoramento via sensorial para controlar temperaturas
+                        durante o processo do transporte de alimentos. Visando a segurança do produto durante todo o
+                        caminho desejado.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 class="titulo-card">NOSSO OBJETIVO</h3>
+                    <p>
+                        Garantir a segurança e a qualidade dos alimentos durante todo o processo de transporte, por meio
+                        de soluções de monitoramento sensorial que permitem o controle preciso da temperatura em tempo
+                        real, assegurando a integridade do produto desde a origem até o destino final.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="simulador" id="simulador">
+            <div class="logo">
+                <div class="logo-row">
+                    <img class="icon" src="./assets/img/iconlogo.png" alt="Logo">
+                    <span class="title-logo">
+                        <span class="white">FRIGO</span><span class="red">LOG</span>
+                    </span>
+                </div>
+                <span class="simulador-title">Simulador Financeiro - Cadeia Fria</span>
+            </div>
+
+            <div class="button-periodo">
+                <button type="button" class="mensal ativo" onclick="setPeriodo(1, this)">Mensal</button>
+                <button type="button" class="anual" onclick="setPeriodo(12, this)">Anual</button>
+            </div>
+
+            <div class="bloco-container ativo">
+                <span class="bloco-title">Transporte</span>
+
+                <div class="bloco">
+                    <div class="bloco-campo">
+                        <p class="titulo_campo">Cargas por mês</p>
+                        <div class="input-box">
+                            <input type="number" id="ipt_cargas" placeholder="Ex: 20" min="0" />
+                            <span class="icone-direita">un</span>
+                        </div>
+                    </div>
+
+                    <div class="bloco-campo">
+                        <p class="titulo_campo">Valor por carga (R$)</p>
+                        <div class="input-box">
+                            <span class="icone-esquerda">R$</span>
+                            <input type="number" id="ipt_valor" placeholder="Ex: 10000" min="0" />
+                        </div>
+                    </div>
+
+                    <div class="bloco-campo">
+                        <p class="titulo_campo">Cargas com problema (saíram dos 4°C)</p>
+                        <div class="input-box">
+                            <input type="number" id="ipt_problema" placeholder="Ex: 10" min="0" max="100" />
+                            <span class="icone-direita">%</span>
+                        </div>
+                    </div>
+
+                    <div class="bloco-campo">
+                        <p class="titulo_campo">Perda por carga com problema</p>
+                        <div class="input-box">
+                            <input type="number" disabled id="ipt_perda" value="100" />
+                            <span class="icone-direita">%</span>
+                        </div>
+                        <p class="dica">Assumindo que uma carga perdida significa que todos os produtos da mesma foram
+                            perdidos
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox-area">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="chk_armazenamento" onchange="toggleArmazenamento()">
+                    Desejo incluir armazenamento na simulação
+                </label>
+            </div>
+
+            <div class="bloco-container" id="blocoArmazenamento">
+                <span class="bloco-title">Armazenamento</span>
+
+                <div class="bloco">
+                    <div class="bloco-campo">
+                        <p class="titulo_campo">Estoque médio (R$)</p>
+                        <div class="input-box">
+                            <span class="icone-esquerda">R$</span>
+                            <input type="number" id="ipt_estoque" placeholder="Ex: 500000" min="0" />
+                        </div>
+                    </div>
+
+                    <div class="bloco-campo">
+                        <p class="titulo_campo">% de perdas adicionais</p>
+                        <div class="input-box">
+                            <input type="number" id="ipt_percasExtras" placeholder="Ex: 1.5" min="0" max="100"
+                                step="0.1" />
+                            <span class="icone-direita">%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <button type="button" class="btn-calcular" onclick="calcular()">Calcular Impacto Total</button>
+
+            <div id="resultado">
+                <h3 class="resultado-placeholder">Pressione o botão "Calcular Impacto Total" para ver resultados...</h3>
+            </div>
+        </div>
+
+        <footer>
+
+            <div class="footer-col">
+
+                <div class="logo-row">
+                    <img src="./assets/img/iconlogo.png" alt="Logo FRIGOLOG">
+
+                    <span class="title-logo">
+                        <span class="white">FRIGO</span><span class="red">LOG</span>
+                    </span>
+                </div>
+
+                <p class="footer-desc">
+                    Monitoramento inteligente da cadeia fria, garantindo qualidade
+                    e segurança no transporte de alimentos da origem ao destino.
+                </p>
+
+                <div class="footer-social">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">WhatsApp</a>
+                </div>
+
+            </div>
+
+            <div class="footer-col">
+                <h3>Navegação</h3>
+
+                <a href="#">Home</a>
+                <a href="#sobre">Sobre nós</a>
+                <a href="#simulador">Simulador</a>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contato</h3>
+
+                <a href="mailto:contato@frigolog.com">contato@frigolog.com</a>
+                <a href="#">(11) 99999-9999</a>
+                <a href="#">São Paulo - SP</a>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    let periodoAtual = 1; // ou 12 (mensal ou anual)
+    let estoqueAtivo = false;
+
+    function calcular() {
+        let periodo = periodoAtual;
+
+        let prejuizoExtra = 0;
+        let valorEmRisco = 0;
+        let economiaEnergia = 0;
+
+        // transporte
+        let cargasMes = Number(ipt_cargas.value);
+        let valorCarga = Number(ipt_valor.value);
+        let percProblema = Number(ipt_problema.value);
+        let percPerda = 100; // VALOR FIXO ASSUMIMOS QUE TODA CARGA É PERDIDA
+
+        let totalCargas = cargasMes * periodo;
+        let faturamentoTransporte = totalCargas * valorCarga;
+
+        let cargasProblema = totalCargas * (percProblema / 100);
+        let perdaPorCarga = valorCarga * (percPerda / 100);
+        let prejuizoTransporte = cargasProblema * perdaPorCarga;
+
+        // PREJUÍZO TOTAL SEM SISTEMA
+        let prejuizoTotal = prejuizoTransporte;
+
+        if (estoqueAtivo) {
+            let estoque = Number(ipt_estoque.value);
+            let percasExtras = Number(ipt_percasExtras.value);
+            prejuizoExtra = estoque * (percasExtras / 100) * periodo;
+
+            valorEmRisco = estoque;
+            prejuizoTotal += prejuizoExtra;
+
+            // ENERGIA
+            let custoEnergia = estoque * 0.02 * periodo;
+            economiaEnergia = custoEnergia * 0.15;
+        }
+
+        // FRIGOLOG reduz perdas
+        let reducao = prejuizoTotal * 0.75;
+        let prejuizoComSistema = prejuizoTotal - reducao;
+        let economia = prejuizoTotal - prejuizoComSistema;
+
+        // OPERAÇÃO MANUAL
+        let custoFuncionario = 2500 * periodo;
+
+        // ROI
+        let custoSistema = economia * 0.05;
+        let payback = economia > 0 ? custoSistema / (economia / periodo) : 0;
+
+        const fmt = v => v.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+        let htmlArmazenamento = "";
+        let htmlExtras = "";
+
+        if (estoqueAtivo) {
+            htmlArmazenamento = `
+                <div class="metrica danger">
+                    <span class="mlabel">Armazenamento</span>
+                    <div class="mval">R$ ${fmt(prejuizoExtra)}</div>
+                </div>
+
+                <div class="metrica warn">
+                    <span class="mlabel">Valor em Risco</span>
+                    <div class="mval">R$ ${fmt(valorEmRisco)}</div>
+                </div>
+            `;
+
+            htmlExtras = `
+                <div class="metrica success">
+                    <span class="mlabel">Economia Energética</span>
+                    <div class="mval">R$ ${fmt(economiaEnergia)}</div>
+                </div>
+            `;
+        }
+
+        resultado.innerHTML = `
+        <p class="resultado-title">Prejuízos sem FRIGOLOG</p>
+
+        <div class="resultado">
+            <div class="metrica danger">
+                <span class="mlabel">Transporte</span>
+                <div class="mval">R$ ${fmt(prejuizoTransporte)}</div>
+            </div>
+
+            ${htmlArmazenamento}
+
+            <div class="metrica danger">
+                <span class="mlabel">Prejuízo Total</span>
+                <div class="mval">R$ ${fmt(prejuizoTotal)}</div>
+            </div>
+        </div>
+
+        <p class="resultado-title">Com FRIGOLOG</p>
+
+        <div class="resultado">
+            <div class="metrica success">
+                <span class="mlabel">Prejuízo Reduzido</span>
+                <div class="mval">R$ ${fmt(prejuizoComSistema)}</div>
+            </div>
+
+            <div class="metrica success">
+                <span class="mlabel">Economia Total</span>
+                <div class="mval">R$ ${fmt(economia)}</div>
+            </div>
+        </div>
+
+        <p class="resultado-title">Outros Ganhos</p>
+
+        <div class="resultado">
+
+            ${htmlExtras}
+
+            <div class="metrica success">
+                <span class="mlabel">Economia Operação</span>
+                <div class="mval">R$ ${fmt(custoFuncionario)}</div>
+            </div>
+
+            <div class="metrica warn">
+                <span class="mlabel">ROI</span>
+                <div class="mval">${payback.toFixed(1)} meses</div>
+            </div>
+
+        </div>
+
+        <div class="conclusao-box">
+            Sua operação pode perder até <strong class="red">R$ ${fmt(prejuizoTotal)}</strong><br>
+            A FRIGOLOG pode gerar economia de
+            <strong class="blue">R$ ${fmt(economia)}</strong>
+        </div>
+        `;
+    }
+
+    function setPeriodo(val, btn) {
+        periodoAtual = val;
+        document.querySelectorAll('.button-periodo button').forEach(b => b.classList.remove('ativo'));
+        btn.classList.add('ativo');
+    }
+
+    function toggleArmazenamento() {
+        const check = document.getElementById("chk_armazenamento");
+        const bloco = document.getElementById("blocoArmazenamento");
+
+        if (check.checked) {
+            bloco.classList.add("ativo");
+            estoqueAtivo = true;
+        } else {
+            bloco.classList.remove("ativo");
+            estoqueAtivo = false;
+        }
+    }
+</script>
+
+</html>
