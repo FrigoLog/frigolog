@@ -22,6 +22,11 @@ body {
     color: #0b1533;
 }
 
+.body-cadastro {
+    background-color: #6785FF;
+    color: #0057c2;
+}
+
 .container {
     width: 100%;
     min-height: 100vh;
@@ -249,6 +254,7 @@ nav a {
     flex-direction: column;
     align-items: center;
     padding: 80px 50px;
+    margin-bottom: 100px;
 }
 
 .simulador-title {
@@ -545,7 +551,6 @@ footer {
     grid-template-columns: 2fr 1fr 1fr;
     gap: 50px;
     color: white;
-    margin-top: 100px;
 }
 
 .footer-col {
@@ -560,6 +565,8 @@ footer {
     margin-bottom: 10px;
     color: white;
 }
+
+
 
 .footer-col a {
     text-decoration: none;
@@ -630,6 +637,8 @@ footer .title-logo {
     flex-direction: column;
     gap: 18px;
     box-shadow: 0 20px 45px rgba(11, 21, 51, 0.12);
+    margin-bottom: 100px;
+    margin-top: 100px;
 }
 
 .form-login a {
