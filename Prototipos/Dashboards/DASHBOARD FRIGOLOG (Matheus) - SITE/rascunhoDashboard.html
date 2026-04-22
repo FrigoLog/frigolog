@@ -53,7 +53,12 @@
                 </div>
 
                 <div class="card2">
+                    <h1>Temperatura Média Diária dos Setores</h1>
                     <canvas id="grafico"></canvas>
+                </div>
+                <div class="card2">
+                    <h1>Status das unidades do sistema</h1>
+                    <canvas id="grafico-pizza"></canvas>
                 </div>
             </div>
 
@@ -67,34 +72,85 @@
 
 <script>
   const ctx = document.getElementById('grafico');
+   const ctx2 = document.getElementById('grafico-pizza');
 
   new Chart(ctx, {
     type: 'line',
     data: {
       labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
       datasets: [{
-        label: 'Temperatura (°C)',
+        label: 'Indústria',
         data: [2, 3, 4, 3, 5, 4],
         borderWidth: 2,
         borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.2)',
-        fill: true
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: true
-        }
+        backgroundColor: 'red',
+        fill: false
       },
-      scales: {
-        y: {
-          beginAtZero: true
+      {
+      label: 'Transporte',
+        data: [1, 1, 2, 3, 1, 2],
+        borderWidth: 2,
+        borderColor: 'blue',
+        backgroundColor: 'blue',
+        fill: false
+        },
+        {
+      label: 'Terceiros',
+        data: [5, 4, 3, 4, 3, 5],
+        borderWidth: 2,
+        borderColor: 'yellow',
+        backgroundColor: 'yellow',
+        fill: false
         }
+    ]
+
+    },
+
+
+  options: {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: true
+    }
+  },
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Dias da Semana'
+      }
+    },
+    y: {
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: 'Temperatura (°C)'
       }
     }
-  });
+  }
+  }});
+
+   new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Normal', 'Alerta', 'Crítico'],
+                datasets: [{
+                    data: [normal, alerta, critico],
+                    backgroundColor: [
+                        "#2ecc71",
+                        "#f1c40f",
+                        "#ff3b3b"
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
 
   // GRAFICO COM TRÊS LINHAS - linha da camara fria, transporte e unidade
 </script>

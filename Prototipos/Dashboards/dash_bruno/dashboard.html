@@ -11,6 +11,7 @@
 <body>
     <div class="sidebar">
 
+        <!--MENU-->
         <div class="logo">
             <a href="../index.html" class="logo-link">
                 <div class="logo-row">
@@ -21,6 +22,7 @@
                 </div>
             </a>
 
+            <!--SUBTITULO-->
             <div class="logo-badge">
                 CONTROLE TÉRMICO DE PONTA A PONTA
             </div>
@@ -36,6 +38,7 @@
             <span class="text">Unidades</span>
         </div>
     </div>
+
 
     <div class="conteudo">
 
@@ -74,10 +77,12 @@
                 </div>
             </div>
 
+            <!--INSIGHTS ADICIONADOS NO JS-->
             <div id="insights" class="insights-container">
 
             </div>
 
+            <!--GRAFICO DE BARRAS HORIZONTAL-->
             <div class="graficos">
                 <div class="grafico-card">
                     <h3>Ranking de risco (Unidades com maiores distâncias da faixa ideal de temperatura)</h3>
@@ -86,6 +91,7 @@
                     </div>
                 </div>
 
+                <!--GRAFICO DE ROSQUINHA-->
                 <div class="grafico-card">
                     <h3>Status das unidades do sistema</h3>
                     <div class="grafico-container">
@@ -94,6 +100,7 @@
                 </div>
             </div>
 
+            <!--GRAFICO DE LINHA-->
             <div class="graficos">
                 <div class="grafico-card">
                     <div class="grafico-header">
@@ -102,8 +109,10 @@
                             <span class="grafico-subtitle">Visão de performance ao longo do tempo</span>
                         </div>
 
+
                         <div class="grafico-filtro">
                             <label for="filtroConformidade">Período</label>
+                            <!--ONCHANGE: TODA VEZ QUE MUDAR O PERIODO CHAMA A FUNÇÃO-->
                             <select id="filtroConformidade" onchange="renderGraficoConformidade()">
                                 <option value="dia">Dia</option>
                                 <option value="semana">Semana</option>
@@ -119,14 +128,17 @@
             </div>
         </div>
 
+        <!--TELA DE UNIDADES QUE ESTÁ NO MENU-->
         <div id="unidades" class="tela">
             <h1>Unidades</h1>
         </div>
     </div>
 </body>
 
+<!--LINK QUE PUXA A BIBLIOTECA CHART.JS-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    /*DADOS FICTICIOS INSERIDOS NA DASH*/
     const unidades = [
         { id: 1, nome: "Freezer 01", tipo: "Freezer" },
         { id: 2, nome: "Freezer 02", tipo: "Freezer" },
