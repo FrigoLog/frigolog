@@ -49,9 +49,9 @@
                 </p>
             </div>
 
-            <div class="hero-img">
-                <img src="./assets/img/22066 1.png" alt="">
-            </div>
+            <!-- <div class="hero-img">
+                <img src="./assets/img/banner.png" alt="">
+            </div> -->
         </div>
 
         <div class="sobre" id="sobre">
@@ -266,8 +266,6 @@
         let custoSistema = economia * 0.05;
         let payback = economia > 0 ? custoSistema / (economia / periodo) : 0;
 
-        const fmt = v => v.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-
         let htmlArmazenamento = "";
         let htmlExtras = "";
 
@@ -275,19 +273,19 @@
             htmlArmazenamento = `
                 <div class="metrica danger">
                     <span class="mlabel">Armazenamento</span>
-                    <div class="mval">R$ ${fmt(prejuizoExtra)}</div>
+                    <div class="mval">R$ ${(prejuizoExtra).toFixed(2)}</div>
                 </div>
 
                 <div class="metrica warn">
                     <span class="mlabel">Valor em Risco</span>
-                    <div class="mval">R$ ${fmt(valorEmRisco)}</div>
+                    <div class="mval">R$ ${(valorEmRisco).toFixed(2)}</div>
                 </div>
             `;
 
             htmlExtras = `
                 <div class="metrica success">
                     <span class="mlabel">Economia Energética</span>
-                    <div class="mval">R$ ${fmt(economiaEnergia)}</div>
+                    <div class="mval">R$ ${(economiaEnergia).toFixed(2)}</div>
                 </div>
             `;
         }
@@ -298,14 +296,14 @@
         <div class="resultado">
             <div class="metrica danger">
                 <span class="mlabel">Transporte</span>
-                <div class="mval">R$ ${fmt(prejuizoTransporte)}</div>
+                <div class="mval">R$ ${(prejuizoTransporte).toFixed(2)}</div>
             </div>
 
             ${htmlArmazenamento}
 
             <div class="metrica danger">
                 <span class="mlabel">Prejuízo Total</span>
-                <div class="mval">R$ ${fmt(prejuizoTotal)}</div>
+                <div class="mval">R$ ${(prejuizoTotal).toFixed(2)}</div>
             </div>
         </div>
 
@@ -314,12 +312,12 @@
         <div class="resultado">
             <div class="metrica success">
                 <span class="mlabel">Prejuízo Reduzido</span>
-                <div class="mval">R$ ${fmt(prejuizoComSistema)}</div>
+                <div class="mval">R$ ${(prejuizoComSistema).toFixed(2)}</div>
             </div>
 
             <div class="metrica success">
                 <span class="mlabel">Economia Total</span>
-                <div class="mval">R$ ${fmt(economia)}</div>
+                <div class="mval">R$ ${(economia).toFixed(2)}</div>
             </div>
         </div>
 
@@ -331,7 +329,7 @@
 
             <div class="metrica success">
                 <span class="mlabel">Economia Operação</span>
-                <div class="mval">R$ ${fmt(custoFuncionario)}</div>
+                <div class="mval">R$ ${(custoFuncionario).toFixed(2)}</div>
             </div>
 
             <div class="metrica warn">
@@ -342,9 +340,9 @@
         </div>
 
         <div class="conclusao-box">
-            Sua operação pode perder até <strong class="red">R$ ${fmt(prejuizoTotal)}</strong><br>
+            Sua operação pode perder até <strong class="red">R$ ${(prejuizoTotal).toFixed(2)}</strong><br>
             A FRIGOLOG pode gerar economia de
-            <strong class="blue">R$ ${fmt(economia)}</strong>
+            <strong class="blue">R$ ${(economia).toFixed(2)}</strong>
         </div>
         `;
     }

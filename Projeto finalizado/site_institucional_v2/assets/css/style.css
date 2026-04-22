@@ -71,7 +71,7 @@ body {
 header {
     width: 100%;
     border-bottom: 1px solid #d9d9d9;
-    background-color: #91a7ff;
+    background: linear-gradient(135deg, #0b1533 0%, #111c45 100%);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,7 +84,7 @@ nav {
 }
 
 nav a {
-    color: #111827;
+    color: #ffffff;
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -124,7 +124,7 @@ nav a {
 
 .btn-branco {
     background-color: transparent;
-    color: #0057c2;
+    color: #ffffff;
     border: 2px solid #0057c2;
 }
 
@@ -154,31 +154,35 @@ nav a {
 }
 
 .hero {
-    width: 85%;
+    width: 100%;
     min-height: 85vh;
     margin: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding-right: 150px;
     gap: 50px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.71) 100%), url('../img/banner.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .hero-texto {
-    flex: 1;
+    width: 30%;
 }
 
 .hero-texto h1 {
     font-size: 42px;
     line-height: 1.15;
     font-weight: 800;
-    color: #071c57;
+    color: #ffffff;
     margin-bottom: 25px;
 }
 
 .hero-texto p {
     font-size: 20px;
     line-height: 1.7;
-    color: #111;
+    color: #b6b6b6;
     max-width: 600px;
 }
 
