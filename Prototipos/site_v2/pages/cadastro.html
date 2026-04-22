@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>FrigoLog - Cadastro</title>
+</head>
+
+<body>
+    <div class="container bg-blue">
+
+        <div class="form-login">
+
+            <a href="../index.html" style="text-decoration: none;">
+                <div class="logo-row">
+                    <img src="../assets/img/iconlogo.png" alt="Logo FrigoLog">
+
+                    <span class="title-logo">
+                        <span class="white">FRIGO</span><span class="red">LOG</span>
+                    </span>
+                </div>
+            </a>
+
+            <div class="intro-login">
+                <p class="slogan">Controle térmico de ponta a ponta</p>
+            </div>
+
+            <label for="ipt_email" class="label-form">
+                Email profissional:
+            </label>
+
+            <div class="input-box">
+                <i class="bx bx-envelope icone-esquerda"></i>
+                <input type="email" id="ipt_email" placeholder="exemplo@empresa.com">
+            </div>
+
+            <label for="ipt_codigo" class="label-form">
+                Código da empresa:
+            </label>
+
+            <div class="input-box">
+                <i class="bx bx-buildings icone-esquerda"></i>
+                <input type="text" id="ipt_codigo" placeholder="Digite o código">
+            </div>
+
+            <label for="ipt_senha" class="label-form">
+                Senha:
+            </label>
+
+            <div class="input-box">
+                <i class="bx bx-lock-alt icone-esquerda"></i>
+                <input type="password" id="ipt_senha" placeholder="Digite sua senha">
+                <i class="bx bx-hide icone-direita" onclick="toggleSenha('ipt_senha', this)" style="cursor:pointer"></i>
+            </div>
+
+            <label for="ipt_confirmar" class="label-form">
+                Confirmar senha:
+            </label>
+
+            <div class="input-box">
+                <i class="bx bx-lock-alt icone-esquerda"></i>
+                <input type="password" id="ipt_confirmar" placeholder="Repita sua senha">
+                <i class="bx bx-hide icone-direita" onclick="toggleSenha('ipt_confirmar', this)"
+                    style="cursor:pointer"></i>
+            </div>
+
+            <button onclick="cadastrar()" class="btn-login">
+                Criar conta
+            </button>
+
+            <div class="link-registro">
+                <p>Já possui conta? <a href="./login.html">Entrar</a></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSenha(id, icon) {
+            const campo = document.getElementById(id);
+
+            if (campo.type == "password") {
+                campo.type = "text";
+                icon.classList.remove("bx-hide");
+                icon.classList.add("bx-show");
+            } else {
+                campo.type = "password";
+                icon.classList.remove("bx-show");
+                icon.classList.add("bx-hide");
+            }
+        }
+
+        function cadastrar() {
+            alert("Cadastro em desenvolvimento.");
+        }
+    </script>
+</body>
+
+</html>
