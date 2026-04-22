@@ -9,7 +9,8 @@ CREATE TABLE tipo_usuario (
 CREATE TABLE empresa (
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
 	razao_social VARCHAR(120),
-	cnpj CHAR(14) UNIQUE
+	cnpj CHAR(14) UNIQUE,
+    codigo_cadastro CHAR(8) UNIQUE
 );
 
 CREATE TABLE usuario (

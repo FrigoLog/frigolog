@@ -5,8 +5,8 @@ INSERT INTO tipo_usuario (tipo) VALUES
 ('Gestor'),
 ('Operador');
 
-INSERT INTO empresa (razao_social, cnpj) VALUES
-('Frigolog Desenv LTDA', '12345678000101');
+INSERT INTO empresa (razao_social, cnpj, codigo_cadastro) VALUES
+('Frigolog Desenv LTDA', '12345678000101', 'ABCD1234');
 
 INSERT INTO usuario (nome, senha, email, fk_tipo_usuario, fk_empresa) VALUES
 ('Bruno', 'bruno@frigolog123', 'bruno@frigolog.com', 1, 1);
