@@ -76,7 +76,18 @@
             </div>
         </div>
 
-        <div class="simulador" id="simulador">
+        <div class="hero-fluxo">
+            <div class="area_texto">
+                <div class="hero-imagem alinhamento">
+                    <img class="diagrama-visao" src="./assets/img/Diagrama de Visão de Negócio.png"
+                        alt="Prédio Frigolog">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="caixa-informacoes" id="simulador">
             <div class="logo">
                 <div class="logo-row">
                     <img class="icon" src="./assets/img/iconlogo.png" alt="Logo">
@@ -84,7 +95,7 @@
                         <span class="white">FRIGO</span><span class="red">LOG</span>
                     </span>
                 </div>
-                <span class="simulador-title">Simulador Financeiro - Cadeia Fria</span>
+                <span class="caixa-informacoes-title">Simulador Financeiro - Cadeia Fria</span>
             </div>
 
             <div class="button-periodo">
@@ -168,6 +179,50 @@
 
             <div id="resultado">
                 <h3 class="resultado-placeholder">Pressione o botão "Calcular Impacto Total" para ver resultados...</h3>
+            </div>
+        </div>
+
+        <!--ENTRE EM CONTATO-->
+        <div class="caixa-informacoes">
+<div class="alinhamento-contato">
+            <span class="caixa-informacoes-contato"><span class="cor-interesse">Ficou interessado?</span> Entre em contato para agendarmos uma reunião!</span>
+
+            <div class="form-login">
+                <a href="../index.html" style="text-decoration: none;">
+                    <div class="logo-row">
+                        <img src="./assets/img/iconlogo.png" alt="Logo FrigoLog">
+
+                        <span class="title-logo">
+                            <span class="white">FRIGO</span><span class="red">LOG</span>
+                        </span>
+                    </div>
+                </a>
+
+                <div class="intro-login">
+                    <p class="slogan">Controle térmico de ponta a ponta</p>
+                </div>
+
+                <label for="ipt_email" class="label-form">
+                    E-mail para contato:
+                </label>
+
+                <div class="input-box">
+                    <i class="bx bx-envelope icone-esquerda"></i>
+                    <input placeholder="exemplo@frigolog.com" type="email" id="ipt_email">
+                </div>
+
+                <label for="ipt_email" class="label-form">
+                    Telefone para contato:
+                </label>
+                <div class="input-box">
+                    <i class="icone-esquerda"></i>
+                    <input placeholder="XXXXX-XXXX" type="text" id="">
+                </div>
+
+                <button onclick="enviar()" class="btn-login">Enviar</button>
+
+            </div>
+
             </div>
         </div>
 

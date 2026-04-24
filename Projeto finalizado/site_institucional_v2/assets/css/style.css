@@ -201,6 +201,17 @@ nav a {
     margin: auto;
 }
 
+.diagrama-visao {
+    width: 80%;
+    height: 100%;
+
+}
+
+.hero-imagem {
+    display: flex;
+    justify-content: center;
+}
+
 .sobre {
     width: 100%;
     padding: 100px 0px;
@@ -250,7 +261,7 @@ nav a {
     font-weight: 500;
 }
 
-.simulador {
+.caixa-informacoes {
     width: 85%;
     background-color: #dbe2ff;
     border-radius: 16px;
@@ -259,15 +270,33 @@ nav a {
     align-items: center;
     padding: 80px 50px;
     margin-bottom: 100px;
+    margin-top: 100px;
 }
 
-.simulador-title {
+.caixa-informacoes-title {
     font-size: 14px;
     color: #475569;
     font-weight: 600;
     margin-top: 10px;
 }
 
+/*
+.caixa-informacoes-contato {
+    font-size: 20px;
+    color: #475569;
+    font-weight: 600;
+    margin-top: 10px;
+}*/
+
+.cor-interesse {
+    color: red;
+}
+
+.alinhamento-contato {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .button-periodo {
     margin-top: 20px;
     display: flex;
