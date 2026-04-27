@@ -172,6 +172,11 @@ body {
     width: 100%;
 }
 
+.conteudo-title {
+    color: white;
+    margin-bottom: 15px;
+}
+
 .kpis {
     display: flex;
     gap: 20px;

@@ -59,25 +59,35 @@ const serial = async (
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados.execute(
-                'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, 1)',
-                [sensorTemperatura - 50]
-            );
-            console.log("valores inseridos no banco: ", (sensorTemperatura - 50).toFixed(2));
 
-            let sensorSimulado = sensorTemperatura - 46
+            // SENSOR SIMULADO NA FAIXA IDEAL
+            let idSensor1 = 1;
+            let sensorSimulado1 = sensorTemperatura - 50;
             await poolBancoDados.execute(
-                'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, 2)',
-                [sensorSimulado]
+                'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, ?)',
+                [sensorSimulado1, idSensor1]
             );
-            console.log("valores inseridos no banco: ", sensorSimulado.toFixed(2));
+            console.log("valores inseridos no banco: ", sensorSimulado1.toFixed(2));
 
-            let sensorSimulado2 = sensorTemperatura - 45
+
+            // SENSOR SIMULADO NA FAIXA DE ALERTA
+            let idSensor2 = 2;
+            let sensorSimulado2 = sensorTemperatura - 46
             await poolBancoDados.execute(
-                'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, 3)',
-                [sensorSimulado2]
+                'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, ?)',
+                [sensorSimulado2, idSensor2]
             );
             console.log("valores inseridos no banco: ", sensorSimulado2.toFixed(2));
+
+
+            // SENSOR SIMULADO NA FAIXA DE ALERTA CRITICO
+            let idSensor3 = 3;
+            let sensorSimulado3 = sensorTemperatura - 45
+            await poolBancoDados.execute(
+                'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?,?)',
+                [sensorSimulado3, idSensor3]
+            );
+            console.log("valores inseridos no banco: ", sensorSimulado3.toFixed(2));
         }
 
     });

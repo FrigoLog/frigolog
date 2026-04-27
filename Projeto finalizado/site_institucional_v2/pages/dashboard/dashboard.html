@@ -29,13 +29,9 @@
 
         <div class="menu-item">
             <span class="icon">📊</span>
-            <span class="text">Ambientes</span>
+            <span class="text">Dashboard Geral</span>
         </div>
 
-        <div class="menu-item">
-            <span class="icon">❄️</span>
-            <span class="text">Pontos Operacionais</span>
-        </div>
 
         <div class="logout-btn" onclick="logout()">
             <span class="icon">⎋</span>
@@ -44,30 +40,33 @@
     </div>
 
     <div class="conteudo">
-        <div class="kpis">
-            <div class="kpi-card alerta">
-                <div class="kpi-bar"></div>
-                <h3>Conformidade do Sistema</h3>
-                <p>92%</p>
-            </div>
+        <h1 class="conteudo-title">Monitoramento Geral</h1>
 
+        <div class="kpis">
             <div class="kpi-card otimo">
                 <div class="kpi-bar"></div>
-                <h3>Ambientes Críticos</h3>
-                <p>0</p>
+                <h3>Conformidade do Sistema</h3>
+                <p>96%</p>
+            </div>
+
+            <div class="kpi-card alerta">
+                <div class="kpi-bar"></div>
+                <h3>Pontos Operacionais Críticos</h3>
+                <p>2</p>
             </div>
 
             <div class="kpi-card critico">
                 <div class="kpi-bar"></div>
                 <h3>Alertas nas Últimas 24h</h3>
                 <p>45</p>
+                <span>PO com mais alertas: Câmara Fria 2 (Ambiente 2)</span>
             </div>
 
             <div class="kpi-card critico">
                 <div class="kpi-bar"></div>
                 <h3>Ponto Operacional Mais Crítico</h3>
                 <p>Câmara Fria 2 (Ambiente 2)</p>
-                <span>+15°C acima do limite</span>
+                <span>+8°C acima do limite</span>
             </div>
         </div>
 
@@ -106,8 +105,8 @@
             </div>
 
             <div class="grafico-card">
-                <h3>Status dos Ambientes</h3>
-                <span class="grafico-subtitle">Distribuição entre ambientes normais, em alerta e críticos</span>
+                <h3>Status dos Pontos Operacionais</h3>
+                <span class="grafico-subtitle">Distribuição entre PO's normais, em alerta e críticos</span>
                 <div class="grafico-container">
                     <canvas id="graficoStatusAmbientes"></canvas>
                 </div>
@@ -133,7 +132,7 @@
     }
 
 
-    const dadosConformidade = [97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 88, 90, 92, 94, 95, 96, 97, 96];
+    const dadosConformidade = [97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 88, 90, 92, 94, 95, 96, 97, 96, 96];
     const ctxConformidade = document.getElementById('graficoConformidadeTemporal');
     new Chart(ctxConformidade, {
         type: 'line',
@@ -143,7 +142,7 @@
                 '05:00', '06:00', '07:00', '08:00', '09:00',
                 '10:00', '11:00', '12:00', '13:00', '14:00',
                 '15:00', '16:00', '17:00', '18:00', '19:00',
-                '20:00'
+                '20:00', '21:00'
             ],
             datasets: [{
                 label: 'Conformidade (%)',
@@ -229,8 +228,8 @@
         data: {
             labels: ['Normal', 'Alerta', 'Crítico'],
             datasets: [{
-                label: 'Status dos Ambientes',
-                data: [6, 3, 2],
+                label: "Status dos PO's",
+                data: [24, 1, 2],
                 backgroundColor: [
                     '#2ecc71',
                     '#f1c40f',
