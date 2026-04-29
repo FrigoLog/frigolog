@@ -62,7 +62,7 @@ const serial = async (
 
             // SENSOR SIMULADO NA FAIXA IDEAL
             let idSensor1 = 1;
-            let sensorSimulado1 = sensorTemperatura - 50;
+            let sensorSimulado1 = sensorTemperatura - 20;
             await poolBancoDados.execute(
                 'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, ?)',
                 [sensorSimulado1, idSensor1]
@@ -72,7 +72,7 @@ const serial = async (
 
             // SENSOR SIMULADO NA FAIXA DE ALERTA
             let idSensor2 = 2;
-            let sensorSimulado2 = sensorTemperatura - 46
+            let sensorSimulado2 = sensorTemperatura - 15
             await poolBancoDados.execute(
                 'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?, ?)',
                 [sensorSimulado2, idSensor2]
@@ -82,7 +82,7 @@ const serial = async (
 
             // SENSOR SIMULADO NA FAIXA DE ALERTA CRITICO
             let idSensor3 = 3;
-            let sensorSimulado3 = sensorTemperatura - 45
+            let sensorSimulado3 = sensorTemperatura - 10
             await poolBancoDados.execute(
                 'INSERT INTO leitura (temperatura, fk_sensor) VALUES (?,?)',
                 [sensorSimulado3, idSensor3]
